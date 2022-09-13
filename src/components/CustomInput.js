@@ -1,4 +1,3 @@
-import {title} from 'process';
 import React from 'react';
 import {View, TextInput, Image, Text,} from 'react-native';
 import {s, vs, ms, mvs} from 'react-native-size-matters';
@@ -20,7 +19,7 @@ const CustomInput = ({
   multiline,
   style,
   Inputstyle,
-  value
+  value,
 }) => {
   return (
       <View style={styles.box}>

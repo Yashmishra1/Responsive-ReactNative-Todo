@@ -1,5 +1,5 @@
 import {Text, View, Image, Switch} from 'react-native';
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
 import styles from './style';
@@ -10,16 +10,41 @@ import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import InputBox from './widgets/inputbox';
 import {DATA, List} from '../../../data';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const AddToDo = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [name, setName] = useState('');
+  const[state,setState] = useState({
+    name:'',
+    date:'',
+    note:'',
+  })
+  const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
-  const placeholderItems = {
-    userName: name,
+  const [note, setNote] = useState('');
+  const [resultArray, setResultArray] = useState([]);
+  const data = {
+    userPlace: place,
     userDate: date,
+    userNotes: note,
   };
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  // useEffect( async () => {
+  //   await AsyncStorage.removeItem('@user_input');
+  // },[])
+  const toggleSwitch = ({navigation}) =>
+    setIsEnabled(previousState => !previousState);
+  let STORAGE_KEY = '@user_input';
+  const saveData = async () => {
+    const value = await AsyncStorage.getItem('@user_input');
+    let emptyArr = [];
+    if (value) {
+      let newProduct = JSON.parse(value);
+      emptyArr = [...newProduct];
+    }
+    emptyArr.push(data);
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+    console.log("STORAGE_KEY",STORAGE_KEY);
+    navigation.navigate('dashboard');
+  };
   return (
     <View style={styles.container}>
       <Text
@@ -73,6 +98,7 @@ const AddToDo = ({navigation}) => {
           multiline={true}
           maxLength={112}
           style={styles.notesIcon}
+          onChangeText={note => setNote(note)}
         />
       </View>
       <View>
@@ -108,9 +134,11 @@ const AddToDo = ({navigation}) => {
       <View>
         <CustomButton
           text="+ Add > "
-          onPress={() =>
-            navigation.navigate('dashboard', {data: placeholderItems})
-          }
+          // onPress={() =>
+          //   navigation.navigate('dashboard', {data: placeholderItems})
+          // }
+
+          onPress={() => saveData()}
         />
       </View>
     </View>

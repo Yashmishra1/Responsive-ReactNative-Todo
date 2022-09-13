@@ -24,6 +24,8 @@ const calender = require('@images/calendar.png')
 const flag = require('@images/flag.png')
 const alarm = require('@images/alarm.png')
 const cancelIcon = require('@images/cancelIcon.png')
+const editIcon = require('@images/edit.png')
+const clock = require('@images/clock.png')
 const Images = {
   logo,
   eye,
@@ -51,5 +53,7 @@ const Images = {
   flag,
   alarm,
   cancelIcon,
+  editIcon,
+  clock
 }
 export default Images;
