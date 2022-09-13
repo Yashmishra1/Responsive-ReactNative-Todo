@@ -11,20 +11,20 @@ import FooterComponent from './widgets/FooterComponent';
 import Navigation from '../../../navigation/Navigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Dashboard = ({route, navigation}) => {
-  const renderItem = ({item}) => {
+  const renderItem = ({item,index}) => {
     return (
       <Item
-        place={item.userName}
+        place={item.userPlace}
         date={item.userDate}
         source={item.source}
-        onPress={() => navigation.navigate('edit')}
+        onPress={() => navigation.navigate('edit',{item : item,index : index})}
       />
     );
   };
   const [store, setStore] = useState([]);
   useEffect(() => {
     getData();
-  }, []);
+  }, [store]);
   const getData = async () => {
     try {
       const value = await AsyncStorage.getItem('@user_input');
@@ -37,13 +37,13 @@ const Dashboard = ({route, navigation}) => {
       alert('Failed to fetch the input from storage');
     }
   };
-  console.log("store",store.length);
   return (
     <FlatList
       data={store}
       renderItem={renderItem}
       ListHeaderComponent={HeaderComponent}
       ListFooterComponent={FooterComponent}
+      keyExtractor={(item, index) => index.toString()}
     />
   );
 };

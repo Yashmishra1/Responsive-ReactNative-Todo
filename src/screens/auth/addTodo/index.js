@@ -13,31 +13,38 @@ import {DATA, List} from '../../../data';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const AddToDo = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [name, setName] = useState('');
+  const[state,setState] = useState({
+    name:'',
+    date:'',
+    note:'',
+  })
+  const [place, setPlace] = useState('');
   const [date, setDate] = useState('');
   const [note, setNote] = useState('');
   const [resultArray, setResultArray] = useState([]);
   const data = {
-    userName: name,
+    userPlace: place,
     userDate: date,
     userNotes: note,
   };
+  // useEffect( async () => {
+  //   await AsyncStorage.removeItem('@user_input');
+  // },[])
   const toggleSwitch = ({navigation}) =>
     setIsEnabled(previousState => !previousState);
   let STORAGE_KEY = '@user_input';
-
   const saveData = async () => {
     const value = await AsyncStorage.getItem('@user_input');
-    let emptyArr = []
+    let emptyArr = [];
     if (value) {
       let newProduct = JSON.parse(value);
       emptyArr = [...newProduct];
     }
     emptyArr.push(data);
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+    console.log("STORAGE_KEY",STORAGE_KEY);
     navigation.navigate('dashboard');
   };
-  // console.log('arr', resultArray);
   return (
     <View style={styles.container}>
       <Text
