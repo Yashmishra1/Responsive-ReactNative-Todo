@@ -9,23 +9,18 @@ import CircleInput from './widgets/CircleInput';
 import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import InputBox from './widgets/inputbox';
-import {DATA, List} from '../../../data';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const AddToDo = ({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const[state,setState] = useState({
-    name:'',
-    date:'',
-    note:'',
+    place: '',
+    date: '',
+    note: '',
   })
-  const [place, setPlace] = useState('');
-  const [date, setDate] = useState('');
-  const [note, setNote] = useState('');
-  const [resultArray, setResultArray] = useState([]);
   const data = {
-    userPlace: place,
-    userDate: date,
-    userNotes: note,
+    userPlace: state.place,
+    userDate: state.date,
+    userNotes: state.note,
   };
   // useEffect( async () => {
   //   await AsyncStorage.removeItem('@user_input');
@@ -68,7 +63,7 @@ const AddToDo = ({navigation}) => {
           title="Place"
           icon={Images.place}
           Inputstyle={styles.placeicon}
-          onChangeText={text => setName(text)}
+          onChangeText={text => setState({...state,place:text})}
         />
       </View>
       <View
@@ -81,14 +76,13 @@ const AddToDo = ({navigation}) => {
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={time => setDate(time)}
+          onChangeText={text => setState({...state,date:text})}
         />
         <CircleInput
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={time => setDate(time)}
-        />
+          onChangeText={text => setState({...state,date:text})} />
       </View>
       <View style={{marginTop: 24}}>
         <NotesInput
@@ -98,7 +92,7 @@ const AddToDo = ({navigation}) => {
           multiline={true}
           maxLength={112}
           style={styles.notesIcon}
-          onChangeText={note => setNote(note)}
+          onChangeText={text => setState({...state,note:text})}
         />
       </View>
       <View>
@@ -134,10 +128,6 @@ const AddToDo = ({navigation}) => {
       <View>
         <CustomButton
           text="+ Add > "
-          // onPress={() =>
-          //   navigation.navigate('dashboard', {data: placeholderItems})
-          // }
-
           onPress={() => saveData()}
         />
       </View>
