@@ -10,7 +10,9 @@ import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const AddToDo = ({navigation}) => {
+import * as todosAction from '../../../store/todos/action';
+import {connect} from 'react-redux';
+const AddToDo = ({addTodo}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const[state,setState] = useState({
     place: '',
@@ -29,16 +31,18 @@ const AddToDo = ({navigation}) => {
     setIsEnabled(previousState => !previousState);
   let STORAGE_KEY = '@user_input';
   const saveData = async () => {
-    const value = await AsyncStorage.getItem('@user_input');
-    let emptyArr = [];
-    if (value) {
-      let newProduct = JSON.parse(value);
-      emptyArr = [...newProduct];
-    }
-    emptyArr.push(data);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
-    console.log("STORAGE_KEY",STORAGE_KEY);
-    navigation.navigate('dashboard');
+    addTodo({name:'yash'})
+
+    // const value = await AsyncStorage.getItem('@user_input');
+    // let emptyArr = [];
+    // if (value) {
+    //   let newProduct = JSON.parse(value);
+    //   emptyArr = [...newProduct];
+    // }
+    // emptyArr.push(data);
+    // await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+    // console.log("STORAGE_KEY",STORAGE_KEY);
+    // navigation.navigate('dashboard');
   };
   return (
     <View style={styles.container}>
@@ -101,6 +105,7 @@ const AddToDo = ({navigation}) => {
           title="Choose Priority"
           rightIcon={Images.dropDown}
           style={styles.priorityIcon}
+        
         />
         <InputBox
           icon={Images.calender}
@@ -134,4 +139,16 @@ const AddToDo = ({navigation}) => {
     </View>
   );
 };
-export default AddToDo;
+// export default AddToDo;
+// function mapStateToProps(state) {
+//   return{
+//     addTodo: state.todos.addToDo
+//   };
+// }
+
+function mapDispatchToProps(dispatch) {
+return{
+  addTodo: (data) => dispatch(todosAction.addTodo(data)),
+};
+}
+export default connect(null, mapDispatchToProps)(AddToDo);
