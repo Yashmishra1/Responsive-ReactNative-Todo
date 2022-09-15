@@ -1,18 +1,49 @@
 import {Text, View, Image, Switch} from 'react-native';
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import Colors from '@themes/colors';
 import styles from './style';
 import Fonts from '@themes/fonts';
 import Images from '@themes/images';
 import EditInputBox from './widgets/InputBox';
 import CustomButton from '@components/CustomButton';
-const EditTodo = ({navigation}) => {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const EditTodo = ({navigation,route}) => {
+  const {item} = route.params
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const[place,setPlace] = useState('')
+  const[state,setState] = useState({
+    place : item.userPlace,
+    time : item.userDate,
+    notes : item.userNotes,
+  }
+  )
+  const[data, setData] = useState([])
+
+  useEffect(() => {
+    editData();
+  }, []);
+  const editData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@user_input');
+      const result = JSON.parse(value)
+      setData(result)
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const submit = async () => {
+    let index = route.params.index;
+    const newTodos = [...data];
+    newTodos[index].userPlace = state.place
+    newTodos[index].userDate = state.time
+    newTodos[index].userNotes = state.notes 
+    AsyncStorage.setItem("@user_input",JSON.stringify(newTodos))
+    navigation.navigate('dashboard');
+  }
   return (
     <View style={styles.container}>
       <Text
+
         style={[
           styles.heading,
           {fontFamily: Fonts.PoppinsLight, color: Colors.grey},
@@ -33,8 +64,8 @@ const EditTodo = ({navigation}) => {
         icon={Images.place}
         Inputstyle={styles.placeicon}
         leftImage={Images.editIcon}
-        value={console.log(place)}
-        onChangeText={text => console.log(setPlace(text))}
+        onChangeText={text => setState({...state,place:text})}
+        value={state.place}
       />
       <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
@@ -43,7 +74,9 @@ const EditTodo = ({navigation}) => {
         icon={Images.clock}
         Inputstyle={styles.clockIcon}
         leftImage={Images.editIcon}
-      />
+        onChangeText={text => setState({...state,time:text})}
+        value={state.time}
+      />  
       <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
         placeholder="Edit notes"
@@ -51,6 +84,8 @@ const EditTodo = ({navigation}) => {
         icon={Images.notes}
         Inputstyle={styles.notesIcon}
         leftImage={Images.editIcon}
+        onChangeText={text => setState({...state,notes:text})}
+        value={state.notes}
       />
       <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
@@ -60,7 +95,7 @@ const EditTodo = ({navigation}) => {
         leftImage={Images.dropDown}
         Inputstyle={styles.notesIcon}
       />
-        <EditInputBox
+      <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
         placeholder="Edit Calendar"
         icon={Images.calender}
@@ -68,7 +103,7 @@ const EditTodo = ({navigation}) => {
         leftImage={Images.dropDown}
         Inputstyle={styles.notesIcon}
       />
-          <View
+      <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -83,12 +118,16 @@ const EditTodo = ({navigation}) => {
           value={isEnabled}
         />
       </View>
-      <View style={{marginTop:1,justifyContent:"center",alignSelf:"center",width:300,}}>
+      <View
+        style={{
+          marginTop: 1,
+          justifyContent: 'center',
+          alignSelf: 'center',
+          width: 300,
+        }}>
         <CustomButton
           text="Save >"
-          onPress={() =>
-            navigation.navigate('dashboard')
-          }
+          onPress={() => submit()}
         />
       </View>
     </View>
