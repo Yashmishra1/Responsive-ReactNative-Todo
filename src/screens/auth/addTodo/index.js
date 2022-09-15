@@ -9,23 +9,20 @@ import CircleInput from './widgets/CircleInput';
 import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import InputBox from './widgets/inputbox';
-import {DATA, List} from '../../../data';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const AddToDo = ({navigation}) => {
+import * as todosAction from '../../../store/todos/action';
+import {connect} from 'react-redux';
+const AddToDo = ({addTodo}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const[state,setState] = useState({
-    name:'',
-    date:'',
-    note:'',
+    place: '',
+    date: '',
+    note: '',
   })
-  const [place, setPlace] = useState('');
-  const [date, setDate] = useState('');
-  const [note, setNote] = useState('');
-  const [resultArray, setResultArray] = useState([]);
   const data = {
-    userPlace: place,
-    userDate: date,
-    userNotes: note,
+    userPlace: state.place,
+    userDate: state.date,
+    userNotes: state.note,
   };
   // useEffect( async () => {
   //   await AsyncStorage.removeItem('@user_input');
@@ -34,16 +31,18 @@ const AddToDo = ({navigation}) => {
     setIsEnabled(previousState => !previousState);
   let STORAGE_KEY = '@user_input';
   const saveData = async () => {
-    const value = await AsyncStorage.getItem('@user_input');
-    let emptyArr = [];
-    if (value) {
-      let newProduct = JSON.parse(value);
-      emptyArr = [...newProduct];
-    }
-    emptyArr.push(data);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
-    console.log("STORAGE_KEY",STORAGE_KEY);
-    navigation.navigate('dashboard');
+    addTodo({name:'yash'})
+
+    // const value = await AsyncStorage.getItem('@user_input');
+    // let emptyArr = [];
+    // if (value) {
+    //   let newProduct = JSON.parse(value);
+    //   emptyArr = [...newProduct];
+    // }
+    // emptyArr.push(data);
+    // await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+    // console.log("STORAGE_KEY",STORAGE_KEY);
+    // navigation.navigate('dashboard');
   };
   return (
     <View style={styles.container}>
@@ -68,7 +67,7 @@ const AddToDo = ({navigation}) => {
           title="Place"
           icon={Images.place}
           Inputstyle={styles.placeicon}
-          onChangeText={text => setName(text)}
+          onChangeText={text => setState({...state,place:text})}
         />
       </View>
       <View
@@ -81,14 +80,13 @@ const AddToDo = ({navigation}) => {
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={time => setDate(time)}
+          onChangeText={text => setState({...state,date:text})}
         />
         <CircleInput
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={time => setDate(time)}
-        />
+          onChangeText={text => setState({...state,date:text})} />
       </View>
       <View style={{marginTop: 24}}>
         <NotesInput
@@ -98,7 +96,7 @@ const AddToDo = ({navigation}) => {
           multiline={true}
           maxLength={112}
           style={styles.notesIcon}
-          onChangeText={note => setNote(note)}
+          onChangeText={text => setState({...state,note:text})}
         />
       </View>
       <View>
@@ -107,6 +105,7 @@ const AddToDo = ({navigation}) => {
           title="Choose Priority"
           rightIcon={Images.dropDown}
           style={styles.priorityIcon}
+        
         />
         <InputBox
           icon={Images.calender}
@@ -134,14 +133,22 @@ const AddToDo = ({navigation}) => {
       <View>
         <CustomButton
           text="+ Add > "
-          // onPress={() =>
-          //   navigation.navigate('dashboard', {data: placeholderItems})
-          // }
-
           onPress={() => saveData()}
         />
       </View>
     </View>
   );
 };
-export default AddToDo;
+// export default AddToDo;
+// function mapStateToProps(state) {
+//   return{
+//     addTodo: state.todos.addToDo
+//   };
+// }
+
+function mapDispatchToProps(dispatch) {
+return{
+  addTodo: (data) => dispatch(todosAction.addTodo(data)),
+};
+}
+export default connect(null, mapDispatchToProps)(AddToDo);

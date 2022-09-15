@@ -12,7 +12,7 @@ const EditTodo = ({navigation,route}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const[state,setState] = useState({
-    place : item.userName,
+    place : item.userPlace,
     time : item.userDate,
     notes : item.userNotes,
   }
@@ -34,9 +34,9 @@ const EditTodo = ({navigation,route}) => {
   const submit = async () => {
     let index = route.params.index;
     const newTodos = [...data];
-    newTodos[index].userName = place
-    newTodos[index].userDate = time
-    newTodos[index].userNotes = notes 
+    newTodos[index].userPlace = state.place
+    newTodos[index].userDate = state.time
+    newTodos[index].userNotes = state.notes 
     AsyncStorage.setItem("@user_input",JSON.stringify(newTodos))
     navigation.navigate('dashboard');
   }
@@ -127,8 +127,6 @@ const EditTodo = ({navigation,route}) => {
         }}>
         <CustomButton
           text="Save >"
-          // onPress={() => navigation.navigate('dashboard',)}
-          // onPress={() => editData()}
           onPress={() => submit()}
         />
       </View>
