@@ -1,26 +1,37 @@
-import {ADDTODO} from './actionType';
+import {ADDTODO, UPDATELIST} from './actionType';
 
 const intitialstate = {
   place: '',
   date: '',
   note: '',
-};
-export default  function todoReducer (state = intitialstate, action)  {
+  todosList: [],
+};            
+export default function todoReducer(state = intitialstate, action) {
   switch (action.type) {
     case ADDTODO:
       if (action.payload) {
-        console.log("user--------------",action.payload);
-        // let user = action.payload.data;
+        let arr = [...state.todosList]
+        let user = action.payload.data;
+        arr.push(user)
         return {
           ...state,
-          // place: user.place,
-          // date: user.date,
-          // note: user.note,
+          todosList:arr,
+          place: user.userPlace,
+          date: user.userDate,
+          note: user.userNotes,
         };
       } else {
         return {
           ...state,
         };
+      }
+    case UPDATELIST:
+      if(action.payload){
+        let UserList = action.payload.data;
+        return{
+          ...state,
+          
+        }
       }
     default: {
       return {
@@ -28,4 +39,4 @@ export default  function todoReducer (state = intitialstate, action)  {
       };
     }
   }
-};
+}

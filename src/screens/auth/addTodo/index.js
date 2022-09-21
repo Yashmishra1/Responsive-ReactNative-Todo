@@ -12,26 +12,27 @@ import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-const AddToDo = ({addTodo}) => {
+const AddToDo = ({addTodo, dateTodo, noteTodo, placeTodo, navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const[state,setState] = useState({
+  const [state, setState] = useState({
     place: '',
     date: '',
     note: '',
-  })
+  });
   const data = {
     userPlace: state.place,
     userDate: state.date,
     userNotes: state.note,
   };
+  const toggleSwitch = ({navigation}) =>
+    setIsEnabled(previousState => !previousState);
   // useEffect( async () => {
   //   await AsyncStorage.removeItem('@user_input');
   // },[])
-  const toggleSwitch = ({navigation}) =>
-    setIsEnabled(previousState => !previousState);
+
   let STORAGE_KEY = '@user_input';
   const saveData = async () => {
-    addTodo({name:'yash'})
+    addTodo({data});
 
     // const value = await AsyncStorage.getItem('@user_input');
     // let emptyArr = [];
@@ -41,8 +42,7 @@ const AddToDo = ({addTodo}) => {
     // }
     // emptyArr.push(data);
     // await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
-    // console.log("STORAGE_KEY",STORAGE_KEY);
-    // navigation.navigate('dashboard');
+    navigation.navigate('dashboard');
   };
   return (
     <View style={styles.container}>
@@ -67,7 +67,7 @@ const AddToDo = ({addTodo}) => {
           title="Place"
           icon={Images.place}
           Inputstyle={styles.placeicon}
-          onChangeText={text => setState({...state,place:text})}
+          onChangeText={text => setState({...state, place: text})}
         />
       </View>
       <View
@@ -80,13 +80,14 @@ const AddToDo = ({addTodo}) => {
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={text => setState({...state,date:text})}
+          onChangeText={text => setState({...state, date: text})}
         />
         <CircleInput
           placeholder="Starts"
           title="Time"
           icon={Images.timer}
-          onChangeText={text => setState({...state,date:text})} />
+          onChangeText={text => setState({...state, date: text})}
+        />
       </View>
       <View style={{marginTop: 24}}>
         <NotesInput
@@ -96,7 +97,7 @@ const AddToDo = ({addTodo}) => {
           multiline={true}
           maxLength={112}
           style={styles.notesIcon}
-          onChangeText={text => setState({...state,note:text})}
+          onChangeText={text => setState({...state, note: text})}
         />
       </View>
       <View>
@@ -105,7 +106,6 @@ const AddToDo = ({addTodo}) => {
           title="Choose Priority"
           rightIcon={Images.dropDown}
           style={styles.priorityIcon}
-        
         />
         <InputBox
           icon={Images.calender}
@@ -131,24 +131,22 @@ const AddToDo = ({addTodo}) => {
         />
       </View>
       <View>
-        <CustomButton
-          text="+ Add > "
-          onPress={() => saveData()}
-        />
+        <CustomButton text="+ Add > " onPress={() => saveData()} />
       </View>
     </View>
   );
 };
-// export default AddToDo;
-// function mapStateToProps(state) {
-//   return{
-//     addTodo: state.todos.addToDo
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    dateTodo: state.todo.date,
+    noteTodo: state.todo.note,
+    placeTodo: state.todo.place,
+  };
+}
 
 function mapDispatchToProps(dispatch) {
-return{
-  addTodo: (data) => dispatch(todosAction.addTodo(data)),
-};
+  return {
+    addTodo: data => dispatch(todosAction.addTodo(data)),
+  };
 }
-export default connect(null, mapDispatchToProps)(AddToDo);
+export default connect(mapStateToProps, mapDispatchToProps)(AddToDo);

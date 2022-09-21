@@ -7,7 +7,9 @@ import Images from '@themes/images';
 import EditInputBox from './widgets/InputBox';
 import CustomButton from '@components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const EditTodo = ({navigation,route}) => {
+import { connect } from 'react-redux';
+import * as todosAction from '../../../store/todos/action';
+const EditTodo = ({navigation,route,}) => {
   const {item} = route.params
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -43,7 +45,6 @@ const EditTodo = ({navigation,route}) => {
   return (
     <View style={styles.container}>
       <Text
-
         style={[
           styles.heading,
           {fontFamily: Fonts.PoppinsLight, color: Colors.grey},
@@ -133,4 +134,5 @@ const EditTodo = ({navigation,route}) => {
     </View>
   );
 };
+
 export default EditTodo;

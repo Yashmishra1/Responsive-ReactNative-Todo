@@ -10,7 +10,8 @@ import HeaderComponent from './widgets/HeaderComponent';
 import FooterComponent from './widgets/FooterComponent';
 import Navigation from '../../../navigation/Navigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const Dashboard = ({route, navigation}) => {
+import {connect} from 'react-redux';
+const Dashboard = ({route, navigation,List}) => {
   const renderItem = ({item,index}) => {
     return (
       <Item
@@ -21,25 +22,26 @@ const Dashboard = ({route, navigation}) => {
       />
     );
   };
-  const [store, setStore] = useState([]);
-  useEffect(() => {
-    getData();
-  }, [store]);
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('@user_input');
-      if (value !== null) {
-        let result = JSON.parse(value);
-        setStore(result);
-      }
-    } catch (e) {
-      console.log(e);
-      alert('Failed to fetch the input from storage');
-    }
-  };
+  // const [store, setStore] = useState([]);
+  // useEffect(() => {
+  //   getData();
+  // }, [store]);
+  // const getData = async () => {
+    // try {
+    //   const value = await AsyncStorage.getItem('@user_input');
+    //   if (value !== null) {
+    //     let result = JSON.parse(value);
+    //     setStore(result);
+    //   }
+    // } catch (e) {
+    //   console.log(e);
+    //   alert('Failed to fetch the input from storage');
+    // }
+  //   setStore(List)
+  // };
   return (
     <FlatList
-      data={store}
+      data={List}
       renderItem={renderItem}
       ListHeaderComponent={HeaderComponent}
       ListFooterComponent={FooterComponent}
@@ -47,4 +49,10 @@ const Dashboard = ({route, navigation}) => {
     />
   );
 };
-export default Dashboard;
+function mapStateToProps(state) {
+  return {
+    List: state.todo.todosList,
+  };
+}
+
+export default connect(mapStateToProps, null)(Dashboard);
