@@ -7,9 +7,9 @@ export const addTodo = (data) => {
   }
 };
 
-export default updateList = (data) => {
+export const updateList = (data,index) => {
   return{
     type: types.UPDATELIST,
-    payload: data
+    payload: data,index,
   }
 }

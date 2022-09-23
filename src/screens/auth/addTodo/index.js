@@ -12,7 +12,7 @@ import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-const AddToDo = ({addTodo, dateTodo, noteTodo, placeTodo, navigation}) => {
+const AddToDo = ({addTodo,navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [state, setState] = useState({
     place: '',

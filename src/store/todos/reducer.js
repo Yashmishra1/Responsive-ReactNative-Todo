@@ -1,3 +1,4 @@
+import { LogBox } from 'react-native';
 import {ADDTODO, UPDATELIST} from './actionType';
 
 const intitialstate = {
@@ -27,10 +28,10 @@ export default function todoReducer(state = intitialstate, action) {
       }
     case UPDATELIST:
       if(action.payload){
-        let UserList = action.payload.data;
+        console.log(action.payload.index);
+        const userList = action.payload;
         return{
           ...state,
-          
         }
       }
     default: {
