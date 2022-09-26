@@ -8,8 +8,12 @@ export const addTodo = (data) => {
 };
 
 export const updateList = (data,index) => {
+  let updateData = {
+    data : data,
+    index : index,
+  }
   return{
     type: types.UPDATELIST,
-    payload: data,index,
+    payload: updateData,
   }
 }

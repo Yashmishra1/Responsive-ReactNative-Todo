@@ -11,8 +11,6 @@ import FooterComponent from './widgets/FooterComponent';
 import Navigation from '../../../navigation/Navigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-useIsFocused
 const Dashboard = ({route, navigation, List}) => {
   const renderItem = ({item, index}) => {
     return (
@@ -24,23 +22,6 @@ const Dashboard = ({route, navigation, List}) => {
       />
     );
   };
-  // const [store, setStore] = useState([]);
-  // useEffect(() => {
-  //   getData();
-  // }, [store]);
-  // const getData = async () => {
-  // try {
-  //   const value = await AsyncStorage.getItem('@user_input');
-  //   if (value !== null) {
-  //     let result = JSON.parse(value);
-  //     setStore(result);
-  //   }
-  // } catch (e) {
-  //   console.log(e);
-  //   alert('Failed to fetch the input from storage');
-  // }
-  //   setStore(List)
-  // };
   return (
     <FlatList
       data={List}

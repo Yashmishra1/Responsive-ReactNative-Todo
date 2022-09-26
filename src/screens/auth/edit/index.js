@@ -18,30 +18,7 @@ const EditTodo = ({navigation, route,updateList}) => {
     time: item.userDate,
     notes: item.userNotes,
   });
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   editData();
-  // }, []);
-  // const editData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('@user_input');
-  //     const result = JSON.parse(value)
-  //     setData(result)
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // const submit = async () => {
-  //   let index = route.params.index;
-  //   const newTodos = [...data];
-  //   newTodos[index].userPlace = state.place
-  //   newTodos[index].userDate = state.time
-  //   newTodos[index].userNotes = state.notes
-  //   AsyncStorage.setItem("@user_input",JSON.stringify(newTodos))
-  //   addTodo();
-  //   navigation.navigate('dashboard');
-  // };
+  
   const submit = () => {
     let index = route.params.index;
     updateList(state,index)

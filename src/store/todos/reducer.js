@@ -28,10 +28,16 @@ export default function todoReducer(state = intitialstate, action) {
       }
     case UPDATELIST:
       if(action.payload){
-        console.log(action.payload.index);
-        const userList = action.payload;
+        const data = action.payload;
+        const objIndex = data.index;
+        const updateData = [...state.todosList]
+        updateData[objIndex].userPlace = data.data.place;
+        updateData[objIndex].userDate = data.data.time;
+        updateData[objIndex].userNotes = data.data.notes;
+        console.log("todolist",[...state.todosList].index);
         return{
           ...state,
+          todosList:updateData,
         }
       }
     default: {
