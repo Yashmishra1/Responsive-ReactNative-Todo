@@ -18,8 +18,8 @@ const styles = ScaledSheet.create({
   },
   clockIcon:
   {
-    width:"60@s",
-    height:"60@vs",
+    width:"63@s",
+    height:"63@vs",
   },
   placeicon:
   {
