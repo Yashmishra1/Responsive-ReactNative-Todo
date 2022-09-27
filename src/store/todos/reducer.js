@@ -11,6 +11,7 @@ export default function todoReducer(state = intitialstate, action) {
   switch (action.type) {
     case ADDTODO:
       if (action.payload) {
+        console.log("actionData",action.payload);
         let arr = [...state.todosList]
         let user = action.payload.data;
         arr.push(user)
