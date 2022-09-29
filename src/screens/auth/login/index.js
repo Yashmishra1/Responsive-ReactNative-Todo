@@ -27,7 +27,7 @@ const Login = ({navigation}) => {
       />
       {/* <CustomButton text="Sign In >" onPress={() => navigation.navigate('dashboard')} /> */}
       {/* <CustomButton text="Sign In >" onPress={() => navigation.navigate('mytabs')} /> */}
-      <CustomButton text="Sign In >" onPress={() => navigation.navigate('Add To-do')}
+      <CustomButton text="Sign In " onPress={() => navigation.navigate('Add To-do')}
       />
       {/* <CustomButton text="Sign In >" onPress={() => navigation.navigate('services')} />  */}
 

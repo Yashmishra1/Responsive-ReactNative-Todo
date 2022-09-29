@@ -26,6 +26,7 @@ const alarm = require('@images/alarm.png')
 const cancelIcon = require('@images/cancelIcon.png')
 const editIcon = require('@images/edit.png')
 const clock = require('@images/clock.png')
+const buttonArrow = require('@images/buttonArrow.png')
 const Images = {
   logo,
   eye,
@@ -54,6 +55,7 @@ const Images = {
   alarm,
   cancelIcon,
   editIcon,
-  clock
+  clock,
+  buttonArrow
 }
 export default Images;
