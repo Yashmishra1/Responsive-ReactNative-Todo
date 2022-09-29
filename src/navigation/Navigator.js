@@ -18,6 +18,7 @@ import MyTabs from './BottomTabBarNavigator';
 import AddToDo from '../screens/auth/addTodo';
 import Item from '../screens/auth/dashboard/widgets/Item';
 import EditTodo from '../screens/auth/edit';
+import Services from '../screens/auth/axiosApi';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
@@ -38,6 +39,7 @@ const Navigation = () => {
         <Stack.Screen name="verificationCode" component={VerificationCode} />
         <Stack.Screen name="task" component={Task} />
         <Stack.Screen name="image" component={DisplayAnImages} />
+        <Stack.Screen name='services' component={Services} />
         <Stack.Screen name="dashboard" component={Dashboard}  options={({navigation}) => ({
           title:"Dashboard",
             headerLeft: props => (

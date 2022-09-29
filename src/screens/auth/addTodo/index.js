@@ -131,7 +131,7 @@ const AddToDo = ({addTodo,navigation}) => {
         />
       </View>
       <View>
-        <CustomButton text="+ Add > " onPress={() => saveData()} />
+        <CustomButton text="+ Add " onPress={() => saveData()} />
       </View>
     </View>
   );

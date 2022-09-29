@@ -1,9 +1,12 @@
 import * as types from './actionType';
+import {Todo} from '../../services/api'
 
 export const addTodo = (data) => {
   return {
     type: types.ADDTODO,
-    payload:data
+    // payload:data
+    // payload: Todo.getList()
+    payload : Todo.getDetails()
   }
 };
 
