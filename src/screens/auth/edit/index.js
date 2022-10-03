@@ -109,7 +109,7 @@ const EditTodo = ({navigation, route,updateList}) => {
           alignSelf: 'center',
           width: 300,
         }}>
-        <CustomButton text="Save >" onPress={() => submit()} />
+        <CustomButton text="Save " onPress={() => submit()} />
       </View>
     </View>
   );

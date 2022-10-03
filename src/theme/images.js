@@ -27,6 +27,15 @@ const cancelIcon = require('@images/cancelIcon.png')
 const editIcon = require('@images/edit.png')
 const clock = require('@images/clock.png')
 const buttonArrow = require('@images/buttonArrow.png')
+const profile = require('@images/profile.png')
+const sync = require('@images/sync.png')
+const language = require('@images/language.png')
+const theme = require('@images/theme.png')
+const cirlceNotification = require('@images/cirlceNotification.png')
+const goal = require('@images/goal.png')
+const account = require('@images/account.png')
+const logout = require('@images/logout.png')
+const increaseArrow = require('@images/increaseArrow.png')
 const Images = {
   logo,
   eye,
@@ -56,6 +65,15 @@ const Images = {
   cancelIcon,
   editIcon,
   clock,
-  buttonArrow
+  buttonArrow,
+  profile,
+  sync,
+  language,
+  theme,
+  cirlceNotification,
+  goal,
+  account,
+  logout,
+  increaseArrow,
 }
 export default Images;

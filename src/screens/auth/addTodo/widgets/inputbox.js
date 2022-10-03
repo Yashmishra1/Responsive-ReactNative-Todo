@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import Images from '@themes/images';
 import Fonts from '@themes/fonts';
-const InputBox = ({title, time, source,rightIcon,icon,style}) => (
+const InputBox = ({title, time, source,rightIcon,icon,style,onPress}) => (
   <View style={styles.item}>
     <View style={styles.Inputdata}>
       <Image source={icon} style={style} />
@@ -12,7 +12,7 @@ const InputBox = ({title, time, source,rightIcon,icon,style}) => (
     <View style={styles.DateIcon}>
       <Text style={styles.date}>{time}</Text>
       <TouchableOpacity>
-      <Image source={rightIcon} style={styles.rightIcon} />
+      <Image source={rightIcon} style={styles.rightIcon} onPress={onPress} />
       </TouchableOpacity>
     </View>
   </View>

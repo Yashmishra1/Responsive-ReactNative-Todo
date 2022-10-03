@@ -1,4 +1,9 @@
-import {Text, View, Image, Switch} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  Switch,
+} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
@@ -12,7 +17,7 @@ import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-const AddToDo = ({addTodo,navigation}) => {
+const AddToDo = ({addTodo, navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [state, setState] = useState({
     place: '',
@@ -26,22 +31,10 @@ const AddToDo = ({addTodo,navigation}) => {
   };
   const toggleSwitch = ({navigation}) =>
     setIsEnabled(previousState => !previousState);
-  // useEffect( async () => {
-  //   await AsyncStorage.removeItem('@user_input');
-  // },[])
 
   let STORAGE_KEY = '@user_input';
   const saveData = async () => {
     addTodo({data});
-
-    // const value = await AsyncStorage.getItem('@user_input');
-    // let emptyArr = [];
-    // if (value) {
-    //   let newProduct = JSON.parse(value);
-    //   emptyArr = [...newProduct];
-    // }
-    // emptyArr.push(data);
-    // await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
     navigation.navigate('dashboard');
   };
   return (
@@ -101,12 +94,12 @@ const AddToDo = ({addTodo,navigation}) => {
         />
       </View>
       <View>
-        <InputBox
-          icon={Images.flag}
-          title="Choose Priority"
-          rightIcon={Images.dropDown}
-          style={styles.priorityIcon}
-        />
+          <InputBox
+            icon={Images.flag}
+            title="Choose Priority"
+            rightIcon={Images.dropDown}
+            style={styles.priorityIcon}
+          />
         <InputBox
           icon={Images.calender}
           title="Choose Calendar Category"
