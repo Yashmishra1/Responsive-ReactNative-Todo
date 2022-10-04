@@ -1,14 +1,13 @@
 import {Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import styles from './style';
-import CategoriesBox from './widgets/Categories';
-import Item from './widgets/Item';
+import CategoriesBox from './widgets/categories';
+import Item from './widgets/item';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
 import {DATA, List} from '../../../data';
 import HeaderComponent from './widgets/HeaderComponent';
 import FooterComponent from './widgets/FooterComponent';
-import Navigation from '../../../navigation/Navigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
 const Dashboard = ({route, navigation, List}) => {

@@ -3,7 +3,6 @@ import React, {Component, useState} from 'react';
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import Images from '@themes/images';
 import Fonts from '@themes/fonts';
-import Navigation from '../../../../navigation/Navigator';
 const Item = ({place, date, source, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress}>

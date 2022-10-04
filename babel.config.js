@@ -16,5 +16,3 @@ module.exports = {
     ],
   ],
 };
-// import Image from '../../../theme/images/images';
-

@@ -4,7 +4,6 @@ import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 
-
 const Login = ({navigation}) => {
 const [state, setState] = useState({
   email: '',
@@ -15,6 +14,9 @@ const handleSignin = () => {
     alert('Email is Requied!!');
   } else if (!state.password) {
     alert('password is Requied!!');
+  }
+  else{
+    navigation.navigate("mytabs")
   }
 }
   return (
@@ -43,7 +45,7 @@ const handleSignin = () => {
       <CustomButton
         text="Sign In "
         onPress={() => navigation.navigate('mytabs')}
-     <CustomButton text="Sign In " onPress={() => navigation.navigate('Add To-do')
+         />
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Don't have account </Text>
         <Text

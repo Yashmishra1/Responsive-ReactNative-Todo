@@ -16,10 +16,9 @@ import Search from '../screens/auth/search';
 import Dashboard from '../screens/auth/dashboard';
 import MyTabs from './BottomTabBarNavigator';
 import AddToDo from '../screens/auth/addTodo';
-import Item from '../screens/auth/dashboard/widgets/Item';
+import Item from '../screens/auth/dashboard/widgets/item';
 import EditTodo from '../screens/auth/edit';
 import Services from '../screens/auth/axiosApi';
-import Setting from '../screens/auth/setting';
 import Profile from '../screens/auth/profile';
 const Stack = createNativeStackNavigator();
 
