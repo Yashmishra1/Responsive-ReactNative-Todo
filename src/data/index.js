@@ -41,3 +41,55 @@ export const List = [
     pending: 'History',
   },
 ];
+
+export const GENERAL = [{
+  title: "GENERAL",
+  data: [
+    {
+      id: "1",
+      task: "Sync Automatically",
+      source: Images.sync,
+    },
+    {
+      id: "2",
+      task: "Language",
+      source: Images.language,
+      language: "EN",
+      icon : Images.increaseArrow,
+    },
+    {
+      id: "3",
+      task: "Theme",
+      source : Images.theme,
+      language: "Light",
+      icon : Images.increaseArrow,
+    },
+    {
+      id: "4",
+      task: "Show Notification",
+      source:Images.cirlceNotification,
+    },
+  ]
+}];
+
+export const PRODUCTIVITY = [{
+  title: "PRODUCTIVITY",
+  data: [
+    {
+      id: "6",
+      task: "Set Goal",
+      source:Images.goal,
+      icon : Images.increaseArrow,
+    },
+    {
+      id: "7",
+      task: "Delete Account",
+      source:Images.account,
+    },
+    {
+      id: "8",
+      task: "Logout",
+      source:Images.logout
+    },
+  ]
+}];

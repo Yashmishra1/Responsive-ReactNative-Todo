@@ -11,7 +11,7 @@ import {vs, ms, s, ScaledSheet} from 'react-native-size-matters';
 import SearchIcon from '../components/Search';
 import Notification from '../components/Notification';
 import Images from '@themes/images';
-
+import Profile from '../screens/auth/profile';
 const Tab = createBottomTabNavigator();
 const TabBarIcon = ({image, style, tintColor}) => {
   return (
@@ -83,7 +83,7 @@ const MyTabs = () => {
           },
           headerLeft: props => (
             <View style={{left: '15%'}}>
-              <TouchableOpacity onPress={() => navigation.goBack()}> 
+              <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image
                   source={Images.cancelIcon}
                   resizeMode="contain"
@@ -115,16 +115,28 @@ const MyTabs = () => {
         }}
       />
       <Tab.Screen
-        name="setting"
+        name="Setting"
         component={Setting}
         options={{
+          headerStyle: {
+            backgroundColor: '#f5f6fa',
+          },
           tabBarShowLabel: false,
-          headerShown: false,
           tabBarIcon: ({color}) => (
             <TabBarIcon
               style={{height: vs(23), tintColor: color}}
               image={Images.setting}
             />
+          ),
+          headerRight: props => (
+            <TouchableOpacity   onPress={Profile}>
+              <View style={{flexDirection: 'row', right: '15%'}}>
+                <Image
+                  source={Images.profile}
+                  style={{height: 30, width: 30}}
+                />
+              </View>
+            </TouchableOpacity>
           ),
         }}
       />

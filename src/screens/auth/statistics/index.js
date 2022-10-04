@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 const Statistics = () => {
   return(
-    <View style={{backgroundColor:"red",justifyContent:"center", marginTop:60,alignItems:"center",height:"10%"}}>
+    <View style={{backgroundColor:"dodgerblue",justifyContent:"center", marginTop:60,alignItems:"center",height:"10%"}}>
     <Text >Statstics</Text>
     </View>
   )

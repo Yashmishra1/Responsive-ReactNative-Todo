@@ -19,6 +19,8 @@ import AddToDo from '../screens/auth/addTodo';
 import Item from '../screens/auth/dashboard/widgets/Item';
 import EditTodo from '../screens/auth/edit';
 import Services from '../screens/auth/axiosApi';
+import Setting from '../screens/auth/setting';
+import Profile from '../screens/auth/profile';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
@@ -96,6 +98,7 @@ const Navigation = () => {
           })}
         />
         <Stack.Screen name="search" component={Search} />
+        <Stack.Screen name='profile' component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

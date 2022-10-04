@@ -30,7 +30,6 @@ const handleSignin = () => {
           onChangeText={text => setState(prev => ({...prev, email: text}))}
           value={state.email}
         />
-
         <Input placeholder="Password" source={Images.eye}
           onChangeText={text => setState(prev => ({...prev, password: text}))}
           value={state.password} />
@@ -41,8 +40,10 @@ const handleSignin = () => {
         text="Forgot?"
         style={styles.primarytext}
       />
-     <CustomButton onPress={handleSignin} text="Sign In " onPress={() => navigation.navigate('Add To-do')
-      <CustomButton onPress={handleSignin} text="Sign In " />
+      <CustomButton
+        text="Sign In "
+        onPress={() => navigation.navigate('mytabs')}
+     <CustomButton text="Sign In " onPress={() => navigation.navigate('Add To-do')
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Don't have account </Text>
         <Text
