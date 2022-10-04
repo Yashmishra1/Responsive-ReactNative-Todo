@@ -7,12 +7,6 @@ const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
 
 const Services = () => {
   const [post, setPost] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   axios.get(baseURL).then(response => {
-  //     setPost(response.data);
-  //   });
-  // }, []);
   React.useEffect(() => {
     axios.get(baseURL).then(response => { response.body
     })

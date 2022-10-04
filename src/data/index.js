@@ -41,6 +41,7 @@ export const List = [
     pending: 'History',
   },
 ];
+
 export const GENERAL = [{
   title: "GENERAL",
   data: [
@@ -70,6 +71,7 @@ export const GENERAL = [{
     },
   ]
 }];
+
 export const PRODUCTIVITY = [{
   title: "PRODUCTIVITY",
   data: [

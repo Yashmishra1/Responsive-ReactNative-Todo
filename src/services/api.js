@@ -2,7 +2,6 @@ import axios from 'axios';
 import  config from '../config';
 
 const host = config.SERVER_HOST;
-console.log("server",host);
 const instance = axios.create({
   baseURL: 'https://api.github.com/',
 });

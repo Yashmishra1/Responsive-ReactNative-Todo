@@ -1,7 +1,6 @@
 import { Text, View, SectionList} from 'react-native'
 import React, { Component } from 'react'
 import Item from './widgets/Item';
-import Images from '@themes/images';
 import Section from './widgets/Section';
 import {GENERAL, PRODUCTIVITY} from '../../../data';
 const renderItem = ({item}) => {
