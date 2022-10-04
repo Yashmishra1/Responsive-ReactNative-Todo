@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, View, Text} from 'react-native';
 import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 
+
 const Login = ({navigation}) => {
+const [state, setState] = useState({
+  email: '',
+  password: '',
+});
+const handleSignin = () => {
+  if (!state.email) {
+    alert('Email is Requied!!');
+  } else if (!state.password) {
+    alert('password is Requied!!');
+  }
+}
   return (
     <View style={styles.container}>
       <View style={styles.connectLogo}>
@@ -15,8 +27,12 @@ const Login = ({navigation}) => {
           style={styles.top}
           placeholder="Email or username"
           keyboardType="email-address"
+          onChangeText={text => setState(prev => ({...prev, email: text}))}
+          value={state.email}
         />
-        <Input placeholder="Password" source={Images.eye} />
+        <Input placeholder="Password" source={Images.eye}
+          onChangeText={text => setState(prev => ({...prev, password: text}))}
+          value={state.password} />
       </View>
 
       <ColorText
@@ -27,7 +43,7 @@ const Login = ({navigation}) => {
       <CustomButton
         text="Sign In "
         onPress={() => navigation.navigate('mytabs')}
-      />
+     <CustomButton text="Sign In " onPress={() => navigation.navigate('Add To-do')
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Don't have account </Text>
         <Text
