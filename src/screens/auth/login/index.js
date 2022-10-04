@@ -41,17 +41,8 @@ const handleSignin = () => {
         text="Forgot?"
         style={styles.primarytext}
       />
-      {/* <CustomButton text="Sign In >" onPress={() => navigation.navigate('dashboard')} /> */}
-      <CustomButton text="Sign In >" onPress={() => navigation.navigate('mytabs')} />
-      {/* <CustomButton onPress={handleSignin} text="Sign In " onPress={() => navigation.navigate('Add To-do')} */}
+     <CustomButton onPress={handleSignin} text="Sign In " onPress={() => navigation.navigate('Add To-do')
       <CustomButton onPress={handleSignin} text="Sign In " />
-      {/* <CustomButton text="Sign In >" onPress={() => navigation.navigate('services')} />  */}
-
-      {/* <CustomButton text="Task" onPress={() => navigation.navigate('Task') } /> */}
-      {/* <CustomButton  text='FlatList' onPress={() => navigation.navigate('history')} />
-      <CustomButton  text='Image' onPress={() => navigation.navigate('image')}  />
-      <CustomButton  text='Search' onPress={() => navigation.navigate('search')}  /> */}
-
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Don't have account </Text>
         <Text
