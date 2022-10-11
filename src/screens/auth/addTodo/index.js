@@ -3,6 +3,9 @@ import {
   View,
   Image,
   Switch,
+  Alert,
+  Button,
+  TouchableOpacity,
 } from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import Fonts from '@themes/fonts';
@@ -17,26 +20,57 @@ import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-const AddToDo = ({addTodo, navigation}) => {
+import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
+import CustomDate from './widgets/CustomDate';
+import moment from 'moment'
+const AddToDo = ({todoDetails, navigation,addTodo}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [state, setState] = useState({
     place: '',
-    date: '',
+    time: '',
     note: '',
+    alarm : false,
+    date:'',
   });
   const data = {
     userPlace: state.place,
-    userDate: state.date,
+    userTime: state.time,
     userNotes: state.note,
+    userAlarm: state.alarm,
+    userDate: state.date,
   };
   const toggleSwitch = ({navigation}) =>
-    setIsEnabled(previousState => !previousState);
-
-  let STORAGE_KEY = '@user_input';
+  setState({...state, alarm: !state.alarm})
   const saveData = async () => {
     addTodo({data});
-    navigation.navigate('dashboard');
+    // onDisplayNotification()
+    // onCreateTriggerNotification()
+    Alert.alert("Done","Added Successfully")
+    navigation.navigate('drawernavigation');
   };
+    // async function onCreateTriggerNotification() {
+    //   const date = new Date(Date.now());
+    //   date.setHours(17);
+    //   date.setMinutes(37);
+    //   // Create a time-based trigger
+    //   const trigger = {
+    //     type: TriggerType.TIMESTAMP,
+    //     timestamp: date.getTime(), // fire at 11:10am (10 minutes before meeting)
+    //   };
+  
+    //   // Create a trigger notification
+    //   await notifee.createTriggerNotification(
+    //     {
+    //       title: 'Meeting with Yash',
+    //       body: 'Current Time',
+    //     },
+    //     trigger,
+    //   );
+    // }
+    const toggle = (date) => {
+      // const getDate = moment(date).format('MMMM Do YYYY, h:mm:ss a');
+      setState({...state, date : !state.date})
+    } 
   return (
     <View style={styles.container}>
       <Text
@@ -63,22 +97,12 @@ const AddToDo = ({addTodo, navigation}) => {
           onChangeText={text => setState({...state, place: text})}
         />
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 24,
-        }}>
-        <CircleInput
-          placeholder="Starts"
-          title="Time"
-          icon={Images.timer}
-          onChangeText={text => setState({...state, date: text})}
-        />
-        <CircleInput
-          placeholder="Starts"
-          title="Time"
-          icon={Images.timer}
+      <View style={styles.dateTime}>
+        <CustomDate
+          title="Start Date and Time"
+          icon={Images.calender}
+          onPress={toggle}
+          value={state.calendar}
           onChangeText={text => setState({...state, date: text})}
         />
       </View>
@@ -108,19 +132,14 @@ const AddToDo = ({addTodo, navigation}) => {
         />
       </View>
       <View
-        style={{
-          marginTop: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
+        style={styles.alarmBox}>
         <Image source={Images.alarm} style={styles.alarm} />
         <Text style={styles.alarmText}>Alarm</Text>
         <Switch
           trackColor={{false: '#767577', true: '#236eee'}}
-          thumbColor={isEnabled ? '#f5f6fa' : '#f4f3f4'}
+          thumbColor={state.alarm ? '#f5f6fa' : '#f4f3f4'}
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={state.alarm}
         />
       </View>
       <View>
@@ -131,9 +150,7 @@ const AddToDo = ({addTodo, navigation}) => {
 };
 function mapStateToProps(state) {
   return {
-    dateTodo: state.todo.date,
-    noteTodo: state.todo.note,
-    placeTodo: state.todo.place,
+    todoDetails: state.todo.todoDetails,
   };
 }
 
