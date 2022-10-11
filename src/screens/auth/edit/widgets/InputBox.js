@@ -39,10 +39,7 @@ const EditInputBox = ({
       </View>
       <View>
         <Text
-          style={[
-            styles.heading,
-            {fontFamily: Fonts.PoppinsLight, color: Colors.grey},
-          ]}>
+          style={styles.heading}>
           {title}
         </Text>
         <TextInput
@@ -61,7 +58,7 @@ const EditInputBox = ({
       </View>
       <TouchableOpacity onPress={toggleBtn}>
         <Image
-          style={[styles.rightImage, {fontFamily: Fonts.PoppinsRegular}]}
+          style={styles.rightImage}
           source={leftImage}
           resizeMode="contain"
         />

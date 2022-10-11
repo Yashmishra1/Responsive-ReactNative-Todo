@@ -1,9 +1,9 @@
-import {Text, View, Image, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TouchableOpacity,ActionSheetIOS} from 'react-native';
 import React, {Component, useState} from 'react';
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
 import Images from '@themes/images';
 import Fonts from '@themes/fonts';
-const Item = ({place, date, source, onPress}) => {
+const Item = ({place, time, source, onPress,date}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.item}>
@@ -15,11 +15,12 @@ const Item = ({place, date, source, onPress}) => {
         </View>
         <View style={styles.DateIcon}>
           <Text style={styles.date}>{date}</Text>
+          <Text style={styles.date}>:{time}</Text>
           <Image source={Images.arrow} style={styles.rightIcon} />
         </View>
       </View>
     </TouchableOpacity>
-  );
+    )
 };
 export default Item;
 const styles = ScaledSheet.create({

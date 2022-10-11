@@ -1,11 +1,10 @@
 import {title} from 'process';
-import React from 'react';
-import {View, TextInput, Image, Text} from 'react-native';
+import React, { useState } from 'react';
+import {View, TextInput, Image, Text, TouchableOpacity} from 'react-native';
 import {s, vs, ms, mvs} from 'react-native-size-matters';
 import {ScaledSheet} from 'react-native-size-matters';
 import Fonts from '@themes/fonts';
 import Colors from '../../../../theme/colors';
-
 const CircleInput = ({
   placeholder,
   secureTextEntry,
@@ -16,26 +15,34 @@ const CircleInput = ({
   title,
   leftImage,
   placeholderColor,
+  onPress,
 }) => {
+  const[state,setState] = useState({
+    calendar : false,
+  })
+  const OpenCalendar = state.calendar;
   return (
-    <View style={styles.box}>
-      <Image style={styles.inputimage} source={icon} resizeMode="contain" />
-      <View style={{right: 25}}>
-        <Text style={[styles.heading, {fontFamily: Fonts.PoppinsLight}]}>
-          {title}
-        </Text>
-        <TextInput
-          style={[styles.input,{fontFamily: Fonts.PoppinsLight, color: Colors.black}]}
-          placeholder={placeholder}
-          secureTextEntry={secureTextEntry}
-          keyboardType={keyboardType}
-          onChangeText={onChangeText}
-          autoCorrect={autoCorrect}
-          placeholderTextColor={placeholderColor}
-        />
-        {/* <Image style={styles.inputimage} source={leftImage} resizeMode="contain" /> */}
+      <View style={styles.box}>
+        <Image style={styles.inputimage} source={icon} resizeMode="contain" />
+        <View style={{right: 25}}>
+          <Text style={[styles.heading, {fontFamily: Fonts.PoppinsLight}]}>
+            {title}
+          </Text>
+          <TextInput
+            style={[
+              styles.input,
+              {fontFamily: Fonts.PoppinsLight, color: Colors.black},
+            ]}
+            placeholder={placeholder}
+            secureTextEntry={secureTextEntry}
+            keyboardType={keyboardType}
+            onChangeText={onChangeText}
+            autoCorrect={autoCorrect}
+            placeholderTextColor={placeholderColor}
+          />
+          {/* <Image style={styles.inputimage} source={leftImage} resizeMode="contain" /> */}
+        </View>
       </View>
-    </View>
   );
 };
 const styles = ScaledSheet.create({
@@ -54,7 +61,7 @@ const styles = ScaledSheet.create({
     width: '50@vs',
   },
   inputimage: {
-    right:7,
+    right: 7,
     flexDirection: 'row',
     width: '20@s',
     height: '20@vs',

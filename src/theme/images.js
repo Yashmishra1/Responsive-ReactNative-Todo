@@ -36,6 +36,7 @@ const goal = require('@images/goal.png')
 const account = require('@images/account.png')
 const logout = require('@images/logout.png')
 const increaseArrow = require('@images/increaseArrow.png')
+const splashLogo = require('@images/splashLogo.png')
 const Images = {
   logo,
   eye,
@@ -75,5 +76,6 @@ const Images = {
   account,
   logout,
   increaseArrow,
+  splashLogo,
 }
 export default Images;

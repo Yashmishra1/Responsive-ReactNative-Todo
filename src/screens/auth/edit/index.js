@@ -1,4 +1,4 @@
-import {Text, View, Image, Switch} from 'react-native';
+import {Text, View, Image, Switch,Alert} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import Colors from '@themes/colors';
 import styles from './style';
@@ -11,18 +11,18 @@ import {connect} from 'react-redux';
 import * as todosAction from '../../../store/todos/action';
 const EditTodo = ({navigation, route,updateList}) => {
   const {item} = route.params;
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(item.userAlarm);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [state, setState] = useState({
     place: item.userPlace,
     time: item.userDate,
     notes: item.userNotes,
   });
-  
   const submit = () => {
     let index = route.params.index;
     updateList(state,index)
-    navigation.navigate('dashboard');
+    Alert.alert("Done","Edit Successfully")
+    navigation.navigate('drawernavigation');
   };
 
   return (
@@ -103,13 +103,8 @@ const EditTodo = ({navigation, route,updateList}) => {
         />
       </View>
       <View
-        style={{
-          marginTop: 1,
-          justifyContent: 'center',
-          alignSelf: 'center',
-          width: 300,
-        }}>
-        <CustomButton text="Save " onPress={() => submit()} />
+        style={styles.saveButton}>
+        <CustomButton text="Save " onPress={() => submit()}/>
       </View>
     </View>
   );

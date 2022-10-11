@@ -1,4 +1,4 @@
-import {Text, View, FlatList, Image, TouchableOpacity} from 'react-native';
+import {Text, View, FlatList, Image, TouchableOpacity,} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import styles from './style';
 import CategoriesBox from './widgets/categories';
@@ -15,12 +15,14 @@ const Dashboard = ({route, navigation, List}) => {
     return (
       <Item
         place={item.userPlace}
-        date={item.userDate}
+        time={item.userTime}
         source={item.source}
+        date={item.userDate}
         onPress={() => navigation.navigate('edit', {item: item, index: index})}
       />
     );
   };
+  console.log("List",List);
   return (
     <FlatList
       data={List}

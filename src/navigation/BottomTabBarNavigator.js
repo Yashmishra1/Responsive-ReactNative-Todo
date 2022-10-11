@@ -12,6 +12,7 @@ import SearchIcon from '../components/Search';
 import Notification from '../components/Notification';
 import Images from '@themes/images';
 import Profile from '../screens/auth/profile';
+import DrawerNavigation from './DrawerNavigation';
 const Tab = createBottomTabNavigator();
 const TabBarIcon = ({image, style, tintColor}) => {
   return (
@@ -27,27 +28,18 @@ const MyTabs = () => {
       screenOptions={{
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: '#d9d9d9',
-      }}>
+      }}
+    >
       <Tab.Screen
-        name="dashboard"
-        component={Dashboard}
+        name="drawernavigation"
+        component={DrawerNavigation}
         options={{
+          headerShown:false,
           tabBarShowLabel: false,
           headerTitle: '',
           headerStyle: {
             backgroundColor: '#f5f6fa',
           },
-          headerRight: props => (
-            <View style={{flexDirection: 'row', right: '15%'}}>
-              <SearchIcon {...props} />
-              <Notification {...props} />
-            </View>
-          ),
-          headerLeft: props => (
-            <View style={{left: '13%'}}>
-              <Image source={Images.drawerIcon} />
-            </View>
-          ),
           tabBarIcon: ({focused, color}) => (
             <TabBarIcon
               style={{height: vs(23), tintColor: color}}
@@ -129,7 +121,7 @@ const MyTabs = () => {
             />
           ),
           headerRight: props => (
-            <TouchableOpacity   onPress={Profile}>
+            <TouchableOpacity onPress={Profile}>
               <View style={{flexDirection: 'row', right: '15%'}}>
                 <Image
                   source={Images.profile}

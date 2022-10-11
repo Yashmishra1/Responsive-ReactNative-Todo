@@ -15,7 +15,8 @@ const handleSignin = () => {
   } else if (!state.password) {
     alert('password is Requied!!');
   }
-  else{
+  else
+  {
     navigation.navigate("mytabs")
   }
 }
@@ -44,7 +45,8 @@ const handleSignin = () => {
       />
       <CustomButton
         text="Sign In "
-        onPress={() => navigation.navigate('mytabs')}
+        // onPress={() => navigation.navigate('mytabs')}
+        onPress={handleSignin}
          />
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Don't have account </Text>

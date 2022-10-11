@@ -11,7 +11,7 @@ const VerificationCode = () => {
       <Text style={styles.primarytext}>Verification Code</Text>
       <Text>{"Use the one time password To reset your password"}</Text>
 
-        <CustomButton style={styles.cancelButton} text="Verify Now >" />
+        <CustomButton style={styles.cancelButton} text="Verify Now " />
     </View>
   );
 };
