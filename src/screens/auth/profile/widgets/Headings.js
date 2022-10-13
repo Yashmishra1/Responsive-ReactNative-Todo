@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 const Headings = ({title}) => {
   return(
-    <View style={{justifyContent:"flex-start",alignItems:"flex-start"}}>
+    <View style={{justifyContent:"center",alignItems:"flex-start"}}>
       <Text style={{fontSize:14,color:"black",fontWeight:"bold",justifyContent:"flex-start",alignItems:"flex-start"}}>{title}</Text>
     </View>
   )

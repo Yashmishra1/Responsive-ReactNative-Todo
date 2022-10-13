@@ -15,7 +15,7 @@ const Dashboard = ({route, navigation, List}) => {
     return (
       <Item
         place={item.userPlace}
-        time={item.userTime}
+        time={item.userDateTime}
         source={item.source}
         date={item.userDate}
         onPress={() => navigation.navigate('edit', {item: item, index: index})}

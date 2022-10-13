@@ -3,7 +3,7 @@ import {Image, View, Text} from 'react-native';
 import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const Login = ({navigation}) => {
 const [state, setState] = useState({
   email: '',

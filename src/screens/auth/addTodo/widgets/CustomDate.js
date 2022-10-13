@@ -12,6 +12,9 @@ const CustomDate = ({
   value,
 }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const[state,setState] = useState({
+    date:''
+  })
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
