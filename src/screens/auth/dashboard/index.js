@@ -22,7 +22,6 @@ const Dashboard = ({route, navigation, List}) => {
       />
     );
   };
-  console.log("List",List);
   return (
     <FlatList
       data={List}

@@ -9,7 +9,8 @@ const Input = ({
   keyboardType,
   onChangeText,
   source,
-  autoCorrect 
+  editable,
+  value,
 }) => {
   return (
     <View style={styles.box}>
@@ -20,7 +21,8 @@ const Input = ({
         keyboardType={keyboardType}
         onChangeText={onChangeText}
         placeholderTextColor="#7D7D7D"
-        autoCorrect={autoCorrect}
+        editable={editable}
+        value={value}
       />
       <Image style={styles.inputimage} source={source} resizeMode="contain" />
     </View>
