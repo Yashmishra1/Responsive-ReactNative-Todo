@@ -14,6 +14,7 @@ import {connect} from 'react-redux';
 import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
+
 const AddToDo = ({todoDetails, navigation, addTodo}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [state, setState] = useState({
@@ -42,10 +43,11 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     Alert.alert('Done', 'Added Successfully');
     navigation.navigate('drawernavigation');
   };
+
   async function onCreateTriggerNotification() {
     const date = new Date(Date.now());
-    date.setHours(23);
-    date.setMinutes(10);
+    date.setHours(18);
+    date.setMinutes(10); 
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
@@ -68,7 +70,6 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
   const toggle = date => {
     const result = moment(date).valueOf();
     setState({...state, dateTime: result});
-    console.log('afdlj', result);
   };
   
   return (

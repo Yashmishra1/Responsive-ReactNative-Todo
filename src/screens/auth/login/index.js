@@ -9,17 +9,7 @@ const [state, setState] = useState({
   email: '',
   password: '',
 });
-const handleSignin = () => {
-  if (!state.email) {
-    alert('Email is Requied!!');
-  } else if (!state.password) {
-    alert('password is Requied!!');
-  }
-  else
-  {
-    navigation.navigate("mytabs")
-  }
-}
+
 const data  = {
   email : state.password,
   password : state.email,

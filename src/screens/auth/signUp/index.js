@@ -15,11 +15,7 @@ const SignUp = ({navigation}) => {
     result: '',
     store:'',
   });
-  // useEffect(async () => {
-  //   const value = await AsyncStorage.getItem('@user_input');
-  //   console.log('value', value);
-  //   }, []);
-  
+
   const data = {
     userName: state.userName,
     email: state.email,
@@ -28,7 +24,6 @@ const SignUp = ({navigation}) => {
   };
   const createAccount = async () => {
     const value = await AsyncStorage.getItem('@user_input');
-    console.log('value', value);
     let emptyArr = [];
     if (value) {
       let newProduct = JSON.parse(value);
@@ -40,6 +35,7 @@ const SignUp = ({navigation}) => {
         } else {
           emptyArr.push(data);
           await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+          alert('Signup Successfully')
         }
     } else {
       emptyArr.push(data);

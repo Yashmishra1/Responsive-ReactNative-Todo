@@ -15,7 +15,7 @@ const ColorText = ({text, onPress}) => {
 const styles = ScaledSheet.create({
   container: {
     flexDirection: 'row',
-    left: '18%',
+    alignSelf:"flex-end",
   },
   text: {
     marginTop: 8,

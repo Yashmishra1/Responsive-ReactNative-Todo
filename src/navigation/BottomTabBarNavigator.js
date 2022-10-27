@@ -8,8 +8,6 @@ import AddToDo from '../screens/auth/addTodo';
 import WishList from '../screens/auth/wishlist';
 import Setting from '../screens/auth/setting';
 import {vs, ms, s, ScaledSheet} from 'react-native-size-matters';
-import SearchIcon from '../components/Search';
-import Notification from '../components/Notification';
 import Images from '@themes/images';
 import Profile from '../screens/auth/profile';
 import DrawerNavigation from './DrawerNavigation';
@@ -74,7 +72,7 @@ const MyTabs = () => {
             display: 'none',
           },
           headerLeft: props => (
-            <View style={{left: '15%'}}>
+            <View style={{left: '15%',}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image
                   source={Images.cancelIcon}

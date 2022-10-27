@@ -8,7 +8,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../screens/auth/dashboard';
 import Profile from '../screens/auth/profile';
 import Setting from '../screens/auth/setting';
-import MyTabs from './BottomTabBarNavigator';
 const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
