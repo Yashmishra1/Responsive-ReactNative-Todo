@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, TouchableOpacity,Image} from 'react-native';
+import React, {useState} from 'react';
+import {View, TouchableOpacity, Image} from 'react-native';
 import Images from '@themes/images';
 import Login from '../screens/auth/login';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,9 +20,21 @@ import Item from '../screens/auth/dashboard/widgets/item';
 import EditTodo from '../screens/auth/edit';
 import Services from '../screens/auth/axiosApi';
 import Profile from '../screens/auth/profile';
-import DrawerNavigation from './DrawerNavigation'
+import DrawerNavigation from './DrawerNavigation';
+import {s} from 'react-native-size-matters';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
-
+const loginCheck = async () => {
+  const [state, setState] = useState({
+    initial: 'login',
+  });
+  const value = await AsyncStorage.getItem('@user_input');
+  if(value)
+  {
+    
+  }
+};
+// loginCheck()
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -54,11 +66,7 @@ const Navigation = () => {
         <Stack.Screen name="task" component={Task} />
         <Stack.Screen name="image" component={DisplayAnImages} />
         <Stack.Screen name="services" component={Services} />
-        <Stack.Screen
-          name="dashboard"
-          component={Dashboard}
-          
-        />
+        <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen
           name="mytabs"
           component={MyTabs}
@@ -68,7 +76,7 @@ const Navigation = () => {
           name="Add To-do"
           component={AddToDo}
           options={({navigation}) => ({
-            headerShown:false,
+            headerShown: false,
             title: 'Dashboard',
             headerLeft: props => (
               <View style={{left: '55%'}}>
@@ -115,8 +123,12 @@ const Navigation = () => {
         />
         <Stack.Screen name="search" component={Search} />
         <Stack.Screen name="profile" component={Profile} />
-        <Stack.Screen name='drawernavigation' component={DrawerNavigation} options={{headerShown:false}} />
-       </Stack.Navigator>
+        <Stack.Screen
+          name="drawernavigation"
+          component={DrawerNavigation}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

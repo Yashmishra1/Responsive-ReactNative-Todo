@@ -1,9 +1,9 @@
 package com.todo;
-
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-
+import com.zoontek.rnbootsplash.RNBootSplash;
 public class MainActivity extends ReactActivity {
 
   /**

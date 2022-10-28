@@ -72,7 +72,7 @@ const MyTabs = () => {
             display: 'none',
           },
           headerLeft: props => (
-            <View style={{left: '15%',}}>
+            <View style={{marginHorizontal:25,}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image
                   source={Images.cancelIcon}
@@ -84,7 +84,7 @@ const MyTabs = () => {
           ),
           tabBarIcon: ({color}) => (
             <TabBarIcon
-              style={{height: vs(47), width: ms(55)}}
+              style={{height: vs(62), width: ms(55)}}
               image={Images.addIcon}
             />
           ),

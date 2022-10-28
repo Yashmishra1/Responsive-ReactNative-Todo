@@ -30,10 +30,9 @@ const styles = ScaledSheet.create({
     marginTop: '18@vs',
     backgroundColor: 'white',
     borderRadius: '15@vs',
-    padding: '15@s',
+    padding: '12@s',
     height: '40@vs',
     width: '310@s',
-    // marginHorizontal: '25@s',
   },
   icon: {
     width: '22@s',
