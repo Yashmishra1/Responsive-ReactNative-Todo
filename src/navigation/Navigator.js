@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {View, TouchableOpacity, Image} from 'react-native';
 import Images from '@themes/images';
 import Login from '../screens/auth/login';
@@ -23,23 +23,31 @@ import Profile from '../screens/auth/profile';
 import DrawerNavigation from './DrawerNavigation';
 import {s} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Stack = createNativeStackNavigator();
-const loginCheck = async () => {
-  const [state, setState] = useState({
-    initial: 'login',
-  });
-  const value = await AsyncStorage.getItem('@user_input');
-  if(value)
-  {
-    
-  }
-};
-// loginCheck()
+
 const Navigation = () => {
+  const[isLoggedIn, setIsLoggedIn] = useState();
+  const[isReady, setIsReady] = useState(true);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    let localdata = await AsyncStorage.getItem("@user_input");
+    localdata = JSON.parse(localdata);
+    setIsLoggedIn(localdata);
+    setIsReady(false);
+  }
+  
+  if (isReady) {
+    return null
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName={(isLoggedIn) ? "mytabs" : "login"} 
         screenOptions={{headerShown: true}}>
         <Stack.Screen
           name="login"
@@ -98,7 +106,7 @@ const Navigation = () => {
           options={({navigation}) => ({
             title: 'Edit To- do',
             headerLeft: props => (
-              <View style={{left: '15%'}}>
+              <View style={{marginHorizontal: 10,}}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Image
                     source={Images.cancelIcon}
