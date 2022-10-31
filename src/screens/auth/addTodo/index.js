@@ -11,7 +11,7 @@ import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
+import notifee, {TimestampTrigger, TriggerType,EventType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
 
@@ -46,22 +46,33 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
 
   async function onCreateTriggerNotification() {
     const date = new Date(Date.now());
-    date.setHours(18);
-    date.setMinutes(10); 
+    date.setHours(23);
+    date.setMinutes(14 ); 
+    console.log("date",date);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
       type: TriggerType.TIMESTAMP,
       timestamp: state.dateTime,
+      alarmManager: true,
     };
 
     // Create a trigger notification
     await notifee.createTriggerNotification(
       {
-        title: 'Meeting with Jane',
+        title: 'Meeting with Yash',
         body: 'Today at 11:20am',
         android: {
-          channelId: 'your-channel-id',
+          channelId:'TODO',
+          actions: [
+            {
+              title: 'Snooze',
+              icon: 'https://my-cdn.com/icons/snooze.png',
+              pressAction: {
+                id: 'snooze',
+              },
+            },
+          ],
         },
       },
       trigger,

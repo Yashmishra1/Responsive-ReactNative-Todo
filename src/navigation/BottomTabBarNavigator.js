@@ -50,8 +50,15 @@ const MyTabs = () => {
         name="statistics"
         component={Statistics}
         options={{
+          title:"Statistics",
+          headerStyle: {
+            backgroundColor: '#f5f6fa',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign:"center",
           tabBarShowLabel: false,
-          headerShown: false,
           tabBarIcon: ({color}) => (
             <TabBarIcon
               style={{height: vs(23), tintColor: color}}
@@ -71,8 +78,9 @@ const MyTabs = () => {
           tabBarStyle: {
             display: 'none',
           },
+          headerTitleAlign:"center",
           headerLeft: props => (
-            <View style={{left: '15%',}}>
+            <View style={{marginHorizontal:25,}}>
               <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Image
                   source={Images.cancelIcon}
@@ -84,7 +92,7 @@ const MyTabs = () => {
           ),
           tabBarIcon: ({color}) => (
             <TabBarIcon
-              style={{height: vs(47), width: ms(55)}}
+              style={{height: vs(62), width: ms(55)}}
               image={Images.addIcon}
             />
           ),
@@ -94,8 +102,15 @@ const MyTabs = () => {
         name="wishlist"
         component={WishList}
         options={{
+          title:"WishList",
+          headerStyle: {
+            backgroundColor: '#f5f6fa',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign:"center",
           tabBarShowLabel: false,
-          headerShown: false,
           tabBarIcon: ({color}) => (
             <TabBarIcon
               style={{height: vs(23), tintColor: color}}
@@ -108,9 +123,14 @@ const MyTabs = () => {
         name="Setting"
         component={Setting}
         options={{
+          title:"Setting",
           headerStyle: {
             backgroundColor: '#f5f6fa',
           },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerTitleAlign:"center",
           tabBarShowLabel: false,
           tabBarIcon: ({color}) => (
             <TabBarIcon
@@ -120,10 +140,10 @@ const MyTabs = () => {
           ),
           headerRight: props => (
             <TouchableOpacity onPress={Profile}>
-              <View style={{flexDirection: 'row', right: '15%'}}>
+              <View style={{flexDirection: 'row',marginHorizontal:15,}}>
                 <Image
                   source={Images.profile}
-                  style={{height: 30, width: 30}}
+                  style={{height: 50, width: 50}}
                 />
               </View>
             </TouchableOpacity>

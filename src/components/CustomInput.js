@@ -61,7 +61,7 @@ const styles = ScaledSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     borderRadius: '15@vs',
-    height: '40@vs',
+    height: '50@vs',
     width: '310@s',
   },
   inputimage: {
@@ -80,6 +80,7 @@ const styles = ScaledSheet.create({
     alignItems: 'center',
     color: 'grey',
     fontSize: 14,
+    marginTop:10,
   },
 });
 export default CustomInput;
