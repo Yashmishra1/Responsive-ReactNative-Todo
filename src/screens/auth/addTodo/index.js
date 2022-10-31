@@ -1,55 +1,79 @@
-import {Text, View, Image, Switch} from 'react-native';
+import {Text, View, Image, Switch, Alert} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
 import styles from './style';
 import Images from '@themes/images';
 import CustomInput from '@components/CustomInput';
-import CircleInput from './widgets/CircleInput';
 import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import InputBox from './widgets/inputbox';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-const AddToDo = ({addTodo,navigation}) => {
+import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
+import CustomDate from './widgets/CustomDate';
+import moment from 'moment';
+const AddToDo = ({todoDetails, navigation, addTodo}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [state, setState] = useState({
     place: '',
-    date: '',
+    time: '',
     note: '',
+    alarm: false,
+    date: '',
+    dateTime: '',
   });
   const data = {
     userPlace: state.place,
-    userDate: state.date,
+    userTime: state.time,
     userNotes: state.note,
+    userAlarm: state.alarm,
+    userDate: state.date,
+    userDateTime: state.dateTime,
   };
   const toggleSwitch = ({navigation}) =>
-    setIsEnabled(previousState => !previousState);
-  // useEffect( async () => {
-  //   await AsyncStorage.removeItem('@user_input');
-  // },[])
+    setState({...state, alarm: !state.alarm});
 
-  let STORAGE_KEY = '@user_input';
   const saveData = async () => {
     addTodo({data});
-
-    // const value = await AsyncStorage.getItem('@user_input');
-    // let emptyArr = [];
-    // if (value) {
-    //   let newProduct = JSON.parse(value);
-    //   emptyArr = [...newProduct];
-    // }
-    // emptyArr.push(data);
-    // await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
-    navigation.navigate('dashboard');
+    // onDisplayNotification()
+    onCreateTriggerNotification();
+    Alert.alert('Done', 'Added Successfully');
+    navigation.navigate('drawernavigation');
   };
+  async function onCreateTriggerNotification() {
+    const date = new Date(Date.now());
+    date.setHours(23);
+    date.setMinutes(10);
+
+    // Create a time-based trigger
+    const trigger: TimestampTrigger = {
+      type: TriggerType.TIMESTAMP,
+      timestamp: state.dateTime,
+    };
+
+    // Create a trigger notification
+    await notifee.createTriggerNotification(
+      {
+        title: 'Meeting with Jane',
+        body: 'Today at 11:20am',
+        android: {
+          channelId: 'your-channel-id',
+        },
+      },
+      trigger,
+    );
+  }
+  const toggle = date => {
+    const result = moment(date).valueOf();
+    setState({...state, dateTime: result});
+    console.log('afdlj', result);
+  };
+  
   return (
     <View style={styles.container}>
-      <Text
-        style={[
-          styles.heading,
-          {fontFamily: Fonts.PoppinsLight, color: Colors.grey},
+          <Text style={[styles.heading,{fontFamily: Fonts.PoppinsLight, color: Colors.grey},
         ]}>
         {'Title'}
       </Text>
@@ -70,23 +94,13 @@ const AddToDo = ({addTodo,navigation}) => {
           onChangeText={text => setState({...state, place: text})}
         />
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 24,
-        }}>
-        <CircleInput
-          placeholder="Starts"
-          title="Time"
-          icon={Images.timer}
-          onChangeText={text => setState({...state, date: text})}
-        />
-        <CircleInput
-          placeholder="Starts"
-          title="Time"
-          icon={Images.timer}
-          onChangeText={text => setState({...state, date: text})}
+      <View style={styles.dateTime}>
+        <CustomDate
+          title="Start Date and Time"
+          icon={Images.calender}
+          onPress={toggle}
+          value={state.calendar}
+          onChangeText={text => setState({...state, dateTime: text})}
         />
       </View>
       <View style={{marginTop: 24}}>
@@ -114,33 +128,25 @@ const AddToDo = ({addTodo,navigation}) => {
           style={styles.calendarIcon}
         />
       </View>
-      <View
-        style={{
-          marginTop: 20,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
+      <View style={styles.alarmBox}>
         <Image source={Images.alarm} style={styles.alarm} />
         <Text style={styles.alarmText}>Alarm</Text>
         <Switch
           trackColor={{false: '#767577', true: '#236eee'}}
-          thumbColor={isEnabled ? '#f5f6fa' : '#f4f3f4'}
+          thumbColor={state.alarm ? '#f5f6fa' : '#f4f3f4'}
           onValueChange={toggleSwitch}
-          value={isEnabled}
+          value={state.alarm}
         />
       </View>
       <View>
-        <CustomButton text="+ Add > " onPress={() => saveData()} />
+        <CustomButton text="+ Add " onPress={() => saveData()} />
       </View>
     </View>
   );
 };
 function mapStateToProps(state) {
   return {
-    dateTodo: state.todo.date,
-    noteTodo: state.todo.note,
-    placeTodo: state.todo.place,
+    todoDetails: state.todo.todoDetails,
   };
 }
 

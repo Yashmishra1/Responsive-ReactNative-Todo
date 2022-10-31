@@ -14,7 +14,6 @@ module.exports = {
         },
       },
     ],
+    'react-native-reanimated/plugin'
   ],
 };
-// import Image from '../../../theme/images/images';
-

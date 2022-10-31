@@ -33,14 +33,16 @@ const styles = ScaledSheet.create({
   },
   alarm:
   {
-    left:"8@s",
-    width:"50@s",
-    height:"50@vs",
+    width:"55@s",
+    height:"55@vs",
   },
   alarmText:
   {
     right:"75@s",
     fontSize:"14@s",
   },
+  saveButton:{
+    alignSelf: 'center',
+  }
 })
 export default styles;s

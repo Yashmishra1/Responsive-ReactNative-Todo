@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import styles from '../style';
 import Colors from '@themes/colors';
 import Fonts from '@themes/fonts';
-import CategoriesBox from './Categories';
+import CategoriesBox from './categories';
 
 const HeaderComponent = () => {
   return (

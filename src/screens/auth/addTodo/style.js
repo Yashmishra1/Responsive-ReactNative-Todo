@@ -69,5 +69,18 @@ const styles = ScaledSheet.create({
     width:"20@s",
     marginTop:10,
   },
+  dateTime:
+  {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 24,
+  },
+  alarmBox:
+  {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  }
 });
 export default styles;

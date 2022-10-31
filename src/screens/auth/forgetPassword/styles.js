@@ -4,7 +4,7 @@ import {ScaledSheet} from 'react-native-size-matters';
 const styles = ScaledSheet.create({
   container:
   {
-    paddingTop:'60@vs',
+    paddingTop:'68@vs',
     alignItems:"center",
     marginHorizontal:"70@s",
     backgroundColor:"#paleGrey",
@@ -25,6 +25,7 @@ const styles = ScaledSheet.create({
   },
   inputBox:
   {
+    marginTop:"32@s",
     marginHorizontal:"20@vs",
     justifyContent:"space-around",
   },

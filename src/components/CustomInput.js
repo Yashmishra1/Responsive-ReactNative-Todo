@@ -46,7 +46,7 @@ const CustomInput = ({
           />
         </View>
         <Image
-          style={[styles.rightImage, {fontFamily: Fonts.PoppinsRegular}]}
+          style={styles.rightImage}
           source={leftImage}
           resizeMode="contain"
         />

@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 
 const WishList = () => {
   return (
-    <View style={{backgroundColor:"red", justifyContent:"center",alignItems:"center",marginTop:58,height:"10%"}}>
-    <Text>WishList</Text>
+    <View style={{backgroundColor:"#f239", justifyContent:"center",alignItems:"center",marginTop:58,height:"10%"}}>
+    <Text style={{fontSize:40}}>Wîšhłìśt</Text>
     </View>
   )
 }

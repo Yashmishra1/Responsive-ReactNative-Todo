@@ -7,10 +7,10 @@ import {DATA, List} from '../../../../data';
 
 const FooterComponent = () => {
   return (
-    <View style={styles.FooterStyle}>
-      {List.map(names => {
+    <View  style={styles.FooterStyle}>
+      {List.map((names,index) => {
         return (
-          <View>
+          <View key={index}>
             <Text
               style={[styles.FooterList, {fontFamily: Fonts.PoppinsMedium}]}>
               {names.pending}

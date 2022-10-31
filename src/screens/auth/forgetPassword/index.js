@@ -13,14 +13,14 @@ import Images from '@themes/images';
 const ForgotPassword = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Box source={Images.Forgotlogo} />
+      <Box source={Images.Forgotlogo} style={styles.logo} />
       <Text style={styles.primarytext}>Forgot Password?</Text>
       <CustomText label="Please enter your email address to reset your password" />
       <View style={styles.inputBox}>
         <CustomInput placeholder="Email" keyboardType="email-address" />
       </View>
       <View style={styles.colorInput}>
-        <CustomButton onPress={() => navigation.navigate('verificationCode')} text="Send >" />
+        <CustomButton onPress={() => navigation.navigate('verificationCode')} text="Send " />
       </View>
       <View style={styles.cancelButton}>
         <ColorText onPress={() => navigation.navigate('login')} text="Cancel" />

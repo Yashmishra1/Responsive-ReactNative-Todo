@@ -2,9 +2,7 @@ import { LogBox } from 'react-native';
 import {ADDTODO, UPDATELIST} from './actionType';
 
 const intitialstate = {
-  place: '',
-  date: '',
-  note: '',
+  todoDetails: {},
   todosList: [],
 };            
 export default function todoReducer(state = intitialstate, action) {
@@ -18,9 +16,10 @@ export default function todoReducer(state = intitialstate, action) {
         return {
           ...state,
           todosList:arr,
-          place: user.userPlace,
-          date: user.userDate,
-          note: user.userNotes,
+          // place: user.userPlace,
+          // date: user.userDate,
+          // note: user.userNotes,
+          todoDetails : user,
         };
       } else {
         return {
@@ -35,7 +34,6 @@ export default function todoReducer(state = intitialstate, action) {
         updateData[objIndex].userPlace = data.data.place;
         updateData[objIndex].userDate = data.data.time;
         updateData[objIndex].userNotes = data.data.notes;
-        console.log("todolist",[...state.todosList].index);
         return{
           ...state,
           todosList:updateData,

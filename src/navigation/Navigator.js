@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,TouchableOpacity,Image} from 'react-native';
+import {View, TouchableOpacity,Image} from 'react-native';
 import Images from '@themes/images';
 import Login from '../screens/auth/login';
 import {NavigationContainer} from '@react-navigation/native';
@@ -16,16 +16,18 @@ import Search from '../screens/auth/search';
 import Dashboard from '../screens/auth/dashboard';
 import MyTabs from './BottomTabBarNavigator';
 import AddToDo from '../screens/auth/addTodo';
-import Item from '../screens/auth/dashboard/widgets/Item';
+import Item from '../screens/auth/dashboard/widgets/item';
 import EditTodo from '../screens/auth/edit';
 import Services from '../screens/auth/axiosApi';
+import Profile from '../screens/auth/profile';
+import DrawerNavigation from './DrawerNavigation'
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="login"
         screenOptions={{headerShown: true}}>
         <Stack.Screen
           name="login"
@@ -34,17 +36,43 @@ const Navigation = () => {
             headerShown: false,
           }}
         />
-        <Stack.Screen name="signup" component={SignUp} />
-        <Stack.Screen name="forgetpassword" component={ForgotPassword} />
+        <Stack.Screen
+          name="signup"
+          component={SignUp}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="forgetpassword"
+          component={ForgotPassword}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name="verificationCode" component={VerificationCode} />
         <Stack.Screen name="task" component={Task} />
         <Stack.Screen name="image" component={DisplayAnImages} />
-        <Stack.Screen name='services' component={Services} />
-        <Stack.Screen name="dashboard" component={Dashboard}  options={({navigation}) => ({
-          title:"Dashboard",
+        <Stack.Screen name="services" component={Services} />
+        <Stack.Screen
+          name="dashboard"
+          component={Dashboard}
+          
+        />
+        <Stack.Screen
+          name="mytabs"
+          component={MyTabs}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Add To-do"
+          component={AddToDo}
+          options={({navigation}) => ({
+            headerShown:false,
+            title: 'Dashboard',
             headerLeft: props => (
               <View style={{left: '55%'}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}> 
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Image
                     source={Images.cancelIcon}
                     resizeMode="contain"
@@ -53,28 +81,17 @@ const Navigation = () => {
                 </TouchableOpacity>
               </View>
             ),
-          })}  />
-        <Stack.Screen name='mytabs' component={MyTabs} options={{headerShown: false,}} />
-        <Stack.Screen name='Add To-do' component={AddToDo} options={({navigation}) => ({
-          title:"Dashboard",
-            headerLeft: props => (
-              <View style={{left: '55%'}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}> 
-                  <Image
-                    source={Images.cancelIcon}
-                    resizeMode="contain"
-                    style={{width: 10, height: 10}}
-                  />
-                </TouchableOpacity>
-              </View>
-            ),
-          })} />
-        <Stack.Screen name='item' component={Item} />
-        <Stack.Screen name='edit' component={EditTodo}  options={({navigation}) => ({
-          title:"Edit To- do",
+          })}
+        />
+        <Stack.Screen name="item" component={Item} />
+        <Stack.Screen
+          name="edit"
+          component={EditTodo}
+          options={({navigation}) => ({
+            title: 'Edit To- do',
             headerLeft: props => (
               <View style={{left: '15%'}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}> 
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Image
                     source={Images.cancelIcon}
                     resizeMode="contain"
@@ -83,7 +100,8 @@ const Navigation = () => {
                 </TouchableOpacity>
               </View>
             ),
-          })} />
+          })}
+        />
         <Stack.Screen
           name="history"
           component={History}
@@ -96,7 +114,9 @@ const Navigation = () => {
           })}
         />
         <Stack.Screen name="search" component={Search} />
-      </Stack.Navigator>
+        <Stack.Screen name="profile" component={Profile} />
+        <Stack.Screen name='drawernavigation' component={DrawerNavigation} options={{headerShown:false}} />
+       </Stack.Navigator>
     </NavigationContainer>
   );
 };

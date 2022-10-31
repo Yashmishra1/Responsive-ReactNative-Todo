@@ -18,7 +18,6 @@ const SignUp = ({navigation}) => {
         <Input placeholder="Email" keyboardType={'email-address'} />
         <Input
           placeholder="Password"
-          secureTextEntry="true"
           style={styles.BottomRadius}
         />
       </View>
@@ -27,7 +26,7 @@ const SignUp = ({navigation}) => {
         placeholder={'Confirm Password'}
         source={require('@images/eye.png')}
       />
-      <CustomButton text={'Sign Up >'} />
+      <CustomButton text={'Sign Up '} />
 
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Already have an account? </Text>
