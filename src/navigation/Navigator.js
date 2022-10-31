@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, TouchableOpacity,Image} from 'react-native';
+import React, {useState,useEffect} from 'react';
+import {View, TouchableOpacity, Image} from 'react-native';
 import Images from '@themes/images';
 import Login from '../screens/auth/login';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,14 +20,34 @@ import Item from '../screens/auth/dashboard/widgets/item';
 import EditTodo from '../screens/auth/edit';
 import Services from '../screens/auth/axiosApi';
 import Profile from '../screens/auth/profile';
-import DrawerNavigation from './DrawerNavigation'
+import DrawerNavigation from './DrawerNavigation';
+import {s} from 'react-native-size-matters';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  const[isLoggedIn, setIsLoggedIn] = useState();
+  const[isReady, setIsReady] = useState(true);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    let localdata = await AsyncStorage.getItem("@user_input");
+    localdata = JSON.parse(localdata);
+    setIsLoggedIn(localdata);
+    setIsReady(false);
+  }
+  
+  if (isReady) {
+    return null
+  }
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="login"
+        initialRouteName={(isLoggedIn) ? "mytabs" : "login"} 
         screenOptions={{headerShown: true}}>
         <Stack.Screen
           name="login"
@@ -54,11 +74,7 @@ const Navigation = () => {
         <Stack.Screen name="task" component={Task} />
         <Stack.Screen name="image" component={DisplayAnImages} />
         <Stack.Screen name="services" component={Services} />
-        <Stack.Screen
-          name="dashboard"
-          component={Dashboard}
-          
-        />
+        <Stack.Screen name="dashboard" component={Dashboard} />
         <Stack.Screen
           name="mytabs"
           component={MyTabs}
@@ -68,7 +84,7 @@ const Navigation = () => {
           name="Add To-do"
           component={AddToDo}
           options={({navigation}) => ({
-            headerShown:false,
+            headerShown: false,
             title: 'Dashboard',
             headerLeft: props => (
               <View style={{left: '55%'}}>
@@ -90,7 +106,7 @@ const Navigation = () => {
           options={({navigation}) => ({
             title: 'Edit To- do',
             headerLeft: props => (
-              <View style={{left: '15%'}}>
+              <View style={{marginHorizontal: 10,}}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                   <Image
                     source={Images.cancelIcon}
@@ -115,8 +131,12 @@ const Navigation = () => {
         />
         <Stack.Screen name="search" component={Search} />
         <Stack.Screen name="profile" component={Profile} />
-        <Stack.Screen name='drawernavigation' component={DrawerNavigation} options={{headerShown:false}} />
-       </Stack.Navigator>
+        <Stack.Screen
+          name="drawernavigation"
+          component={DrawerNavigation}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

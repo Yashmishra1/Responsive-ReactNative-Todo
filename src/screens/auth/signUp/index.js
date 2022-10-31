@@ -15,11 +15,7 @@ const SignUp = ({navigation}) => {
     result: '',
     store:'',
   });
-  // useEffect(async () => {
-  //   const value = await AsyncStorage.getItem('@user_input');
-  //   console.log('value', value);
-  //   }, []);
-  
+
   const data = {
     userName: state.userName,
     email: state.email,
@@ -28,7 +24,6 @@ const SignUp = ({navigation}) => {
   };
   const createAccount = async () => {
     const value = await AsyncStorage.getItem('@user_input');
-    console.log('value', value);
     let emptyArr = [];
     if (value) {
       let newProduct = JSON.parse(value);
@@ -40,12 +35,12 @@ const SignUp = ({navigation}) => {
         } else {
           emptyArr.push(data);
           await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
+          alert('Signup Successfully')
         }
     } else {
       emptyArr.push(data);
-      console.log("emptyArr",emptyArr);
+      alert('Signup Successfully')
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
-      console.log('successfully saved');
     }
   };
   return (
@@ -88,30 +83,10 @@ const SignUp = ({navigation}) => {
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Already have an account? </Text>
         <Pressable onPress={() => navigation.navigate('login')}>
-          <Text style={styles.bottomText}> Sign in</Text>
+          <Text style={styles.bottomText}>Sign in</Text>
         </Pressable>
       </View>
     </SafeAreaView>
   );
 };
 export default SignUp;
-//  if(!state.userName)
-// {
-//   alert("Enter an Username")
-// }
-// else if(!state.email)
-// {
-//   alert("Enter an Email")
-// }
-// else if(!state.password)
-// {
-//   alert("Enter an Password")
-// }
-// else if(!state.confirmPassword)
-// {
-//   alert("Enter an Confirmpassword ")
-// }
-// else{
-//   alert("Successfully Signup","Do Login")
-//   // navigation.navigate('login');
-//  }

@@ -8,7 +8,7 @@ const Item = ({place, time, source, onPress,date}) => {
     <TouchableOpacity onPress={onPress}>
       <View style={styles.item}>
         <View style={styles.Inputdata}>
-          <Image source={source} style={styles.icon} />
+          <Image source={Images.right} style={styles.icon} />
           <Text style={[styles.title, {fontFamily: Fonts.PoppinsLight}]}>
             {place}
           </Text>

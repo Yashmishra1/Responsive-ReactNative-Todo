@@ -55,7 +55,7 @@ const styles = ScaledSheet.create({
   calendarIcon:
   {
     width: '20@s',
-    height: '19@vs',
+    height: '21@vs',
   },
   placeicon:
   {

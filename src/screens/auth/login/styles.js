@@ -17,7 +17,6 @@ const styles = ScaledSheet.create({
     marginTop: 8,
     color: '#236EEE',
     fontSize: 16,
-    left: '50%',
   },
   signup: {
     flex: 1,

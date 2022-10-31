@@ -9,17 +9,7 @@ const [state, setState] = useState({
   email: '',
   password: '',
 });
-const handleSignin = () => {
-  if (!state.email) {
-    alert('Email is Requied!!');
-  } else if (!state.password) {
-    alert('password is Requied!!');
-  }
-  else
-  {
-    navigation.navigate("mytabs")
-  }
-}
+
 const data  = {
   email : state.password,
   password : state.email,
@@ -38,16 +28,16 @@ const data  = {
       if(result)
       {
         result.filter(element => {
-        if(element.email == state.email)
+        if(element.email === state.email)
         {
           navigation.navigate("mytabs")
         }
       })
     }
     else{
-      Alert.alert("Account not found", "Please signup")
+      Alert.alert("Account not found", "Please signup");
     }
-  }
+  } 
     }
   return (
     <View style={styles.container}>
@@ -74,11 +64,10 @@ const data  = {
       />
       <CustomButton
         text="Sign In "
-        // onPress={() => navigation.navigate('mytabs')}
         onPress={handleSubmit}
          />
       <View style={styles.signup}>
-        <Text style={styles.secondarytext}>Don't have account </Text>
+        <Text style={styles.secondarytext}>{"Don't have account "}</Text>
         <Text
           onPress={() => navigation.navigate('signup')}
           style={styles.bottomText}>

@@ -27,7 +27,6 @@ const styles = ScaledSheet.create({
   {
     marginTop:"32@s",
     marginHorizontal:"20@vs",
-    justifyContent:"space-around",
   },
   colorInput:
   {
