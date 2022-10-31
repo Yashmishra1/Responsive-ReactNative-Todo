@@ -6,15 +6,7 @@ const styles = ScaledSheet.create({
     flex: 1,
     backgroundColor: '#F5F6FA',
     alignItems: 'center',
-    padding: '88@vs',
     marginHorizontal:"15@vs",
-  },
-  primarytext: {
-    marginTop: 8,
-    color: '#236EEE',
-    fontSize: 16,
-    alignItems: 'flex-end',
-    left: '40%',
   },
   signup: {
     flex: 1,
@@ -22,7 +14,6 @@ const styles = ScaledSheet.create({
     alignItems: 'flex-end',
     marginBottom: '15@vs',
   },
-
   inputbox: {
     marginTop: '45@s',
   },
