@@ -26,6 +26,7 @@ const MyTabs = () => {
       screenOptions={{
         tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: '#d9d9d9',
+        tabBarStyle:{height:82,}
       }}
     >
       <Tab.Screen
@@ -92,7 +93,7 @@ const MyTabs = () => {
           ),
           tabBarIcon: ({color}) => (
             <TabBarIcon
-              style={{height: vs(62), width: ms(55)}}
+              style={{height: vs(62), width: ms(62)}}
               image={Images.addIcon}
             />
           ),

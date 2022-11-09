@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 const WishList = () => {
   return (
     <View style={{backgroundColor:"#f239", justifyContent:"center",alignItems:"center",marginTop:58,height:"10%"}}>
-    <Text style={{fontSize:40}}>Wîšhłìśt</Text>
+    <Text style={{fontSize:40}}>Coming Soon Wîšhłìśt</Text>
     </View>
   )
 }

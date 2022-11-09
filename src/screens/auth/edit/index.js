@@ -4,18 +4,20 @@ import Colors from '@themes/colors';
 import styles from './style';
 import Fonts from '@themes/fonts';
 import Images from '@themes/images';
-import EditInputBox from './widgets/InputBox';
+import EditInputBox from './widgets/InputBox';  
 import CustomButton from '@components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {connect} from 'react-redux';
 import * as todosAction from '../../../store/todos/action';
+import moment from 'moment';
+
 const EditTodo = ({navigation, route,updateList}) => {
   const {item} = route.params;
   const [isEnabled, setIsEnabled] = useState(item.userAlarm);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [state, setState] = useState({
     place: item.userPlace,
-    time: item.userDate,
+    time: item.userDateTime,
     notes: item.userNotes,
   });
   const submit = () => {
@@ -59,7 +61,7 @@ const EditTodo = ({navigation, route,updateList}) => {
         Inputstyle={styles.clockIcon}
         leftImage={Images.editIcon}
         onChangeText={text => setState({...state, time: text})}
-        value={state.time}
+        value={moment(state.time).format("DD-MM-YYYY HH:mm A")}
       />
       <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
@@ -104,7 +106,7 @@ const EditTodo = ({navigation, route,updateList}) => {
       </View>
       <View
         style={styles.saveButton}>
-        <CustomButton text="Save " onPress={() => submit()}/>
+        <CustomButton text="Update " onPress={() => submit()}/>
       </View>
     </View>
   );

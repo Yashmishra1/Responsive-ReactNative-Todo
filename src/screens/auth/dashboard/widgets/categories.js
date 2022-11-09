@@ -1,24 +1,17 @@
-import {Text, View} from 'react-native';
-import React, {Component} from 'react';
-import {ScaledSheet} from 'react-native-size-matters';
+import { Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { ScaledSheet } from 'react-native-size-matters';
 
-const CategoriesBox = ({title, subTitle, Color}) => {
-  return (  
+const CategoriesBox = ({ title, subTitle, Color }) => {
+  return (
     <View style={styles.categoriesBox}>
-      <Text style={styles.primaryTitle}>{title}</Text>
+      <Text style={styles.primaryTitle}>{title} {"Tasks"}</Text>
       <Text style={styles.largeHeading}>{subTitle}</Text>
       <View style={styles.border}>
-        <View
-          style={[
-            styles.purpleView,
-            {
-              backgroundColor: Color,
-            },
-          ]}
-        />
+        <View style={[styles.purpleView, { backgroundColor: Color,},]}/>
         <View style={styles.greyView} />
       </View>
-    </View> 
+    </View>
   );
 };
 const styles = ScaledSheet.create({

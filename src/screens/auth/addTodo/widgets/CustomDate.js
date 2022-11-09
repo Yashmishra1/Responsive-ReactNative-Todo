@@ -35,7 +35,7 @@ const CustomDate = ({
         <Image style={styles.inputimage} source={icon} resizeMode="contain" />
         <View style={{right: 25}}>
           <Text style={[styles.heading, {fontFamily: Fonts.PoppinsLight}]}>
-            {title}
+            {value}
           </Text>
         </View>
       </View>

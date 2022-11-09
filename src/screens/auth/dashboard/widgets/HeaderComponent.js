@@ -1,14 +1,14 @@
 import { Text, View } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component,useState } from 'react'
 import styles from '../style';
 import Colors from '@themes/colors';
 import Fonts from '@themes/fonts';
 import CategoriesBox from './categories';
 
-const HeaderComponent = () => {
+const HeaderComponent = ({BusinessTask,PersonalTask}) => {
+  const [getPercentage, setPercentage] = useState();
   return (
     <View style={styles.container}>
-      <View style={styles.header}></View>
       <Text
         style={[
           styles.heading,
@@ -24,12 +24,12 @@ const HeaderComponent = () => {
       </Text>
       <View style={styles.boxContainer}>
         <CategoriesBox
-          title="40 Tasks"
+          title={BusinessTask}
           subTitle="Business"
           Color={Colors.purple}
         />
         <CategoriesBox
-          title="18 Tasks"
+          title={PersonalTask}
           subTitle="Personal"
           Color={Colors.pink}
         />

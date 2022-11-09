@@ -1,5 +1,6 @@
 const logo = require('@images/logo.png')
 const eye = require('@images/eye.png')
+const lockEyeView = require('@images/eyeHide.png')
 const Forgotlogo = require('@images/Forgot.png')
 const verificationlogo = require('@images/verification.png')
 const search = require('@images/search.png')
@@ -77,5 +78,6 @@ const Images = {
   logout,
   increaseArrow,
   splashLogo,
+  lockEyeView,
 }
 export default Images;

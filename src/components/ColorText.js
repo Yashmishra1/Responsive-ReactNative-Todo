@@ -20,8 +20,7 @@ const styles = ScaledSheet.create({
   text: {
     marginTop: 8,
     color: '#236EEE',
-    fontSize: 16,
-    paddingHorizontal: 0.99,
+    left:10,
   },
 });
 export default ColorText;

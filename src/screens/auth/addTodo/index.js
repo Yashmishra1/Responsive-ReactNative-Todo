@@ -1,5 +1,5 @@
 import {Text, View, Image, Switch, Alert} from 'react-native';
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
 import styles from './style';
@@ -7,19 +7,19 @@ import Images from '@themes/images';
 import CustomInput from '@components/CustomInput';
 import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
-import InputBox from './widgets/inputbox';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as todosAction from '../../../store/todos/action';
 import {connect} from 'react-redux';
-import notifee, {TimestampTrigger, TriggerType,EventType} from '@notifee/react-native';
+import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
+import CutstomDropdown from '../../../components/Dropdown';
 
 const AddToDo = ({todoDetails, navigation, addTodo}) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [categoryValue, setCategoryValue] = useState(null);
+  const[calendarValue,setCalendarValue] = useState(null)
+  const [isFocus, setIsFocus] = useState(false);
   const [state, setState] = useState({
     place: '',
-    time: '',
     note: '',
     alarm: false,
     date: '',
@@ -27,18 +27,19 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
   });
   const data = {
     userPlace: state.place,
-    userTime: state.time,
     userNotes: state.note,
     userAlarm: state.alarm,
     userDate: state.date,
     userDateTime: state.dateTime,
+    categoryValue:categoryValue,
+    calendarValue:calendarValue,
   };
   const toggleSwitch = ({navigation}) =>
     setState({...state, alarm: !state.alarm});
 
   const saveData = async () => {
     addTodo({data});
-    // onDisplayNotification()
+
     onCreateTriggerNotification();
     Alert.alert('Done', 'Added Successfully');
     navigation.navigate('drawernavigation');
@@ -47,8 +48,8 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
   async function onCreateTriggerNotification() {
     const date = new Date(Date.now());
     date.setHours(23);
-    date.setMinutes(14 ); 
-    console.log("date",date);
+    date.setMinutes(14);
+    console.log('date', date);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
@@ -61,18 +62,13 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     await notifee.createTriggerNotification(
       {
         title: 'Meeting with Yash',
-        body: 'Today at 11:20am',
+        body: "notification",
         android: {
-          channelId:'TODO',
-          actions: [
-            {
-              title: 'Snooze',
-              icon: 'https://my-cdn.com/icons/snooze.png',
-              pressAction: {
-                id: 'snooze',
-              },
-            },
-          ],
+          channelId: 'TODO',
+        },
+        ios: {
+          // iOS resource (.wav, aiff, .caf)
+          sound: 'local.wav',
         },
       },
       trigger,
@@ -82,10 +78,23 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     const result = moment(date).valueOf();
     setState({...state, dateTime: result});
   };
-  
+
+  const categoryData = [
+    {label: 'Business', value: 'Business'},
+    {label: 'Personal', value: 'Personal'},
+  ];
+  const calendarData = [
+    {label: 'Important', value: 'Important'},
+    {label: 'High', value: 'High'},
+    {label: 'Medium', value: 'Medium'},
+    {label: 'Normal', value: 'Normal'},
+  ];
   return (
     <View style={styles.container}>
-          <Text style={[styles.heading,{fontFamily: Fonts.PoppinsLight, color: Colors.grey},
+      <Text
+        style={[
+          styles.heading,
+          {fontFamily: Fonts.PoppinsLight, color: Colors.grey},
         ]}>
         {'Title'}
       </Text>
@@ -111,8 +120,8 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
           title="Start Date and Time"
           icon={Images.calender}
           onPress={toggle}
-          value={state.calendar}
           onChangeText={text => setState({...state, dateTime: text})}
+          value={state.dateTime ? moment(state.dateTime).format("DD-MM-YYYY HH:mm A") : "Start Date and Time"}
         />
       </View>
       <View style={{marginTop: 24}}>
@@ -126,20 +135,39 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
           onChangeText={text => setState({...state, note: text})}
         />
       </View>
-      <View>
-        <InputBox
-          icon={Images.flag}
-          title="Choose Priority"
-          rightIcon={Images.dropDown}
+      <View style={{marginTop: 20}}>
+        <CutstomDropdown
+          searchPlaceholder="Search Category..."
+          data={categoryData}
+          placeholder="Choose Priority"
+          source={Images.flag}
           style={styles.priorityIcon}
-        />
-        <InputBox
-          icon={Images.calender}
-          title="Choose Calendar Category"
-          rightIcon={Images.dropDown}
-          style={styles.calendarIcon}
+          value={categoryValue}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={item => {
+            setCategoryValue(item.value);
+            setIsFocus(false);
+          }}
         />
       </View>
+      <View style={{marginTop: 20}}>
+        <CutstomDropdown
+          searchPlaceholder="Search Category..."
+          data={calendarData}
+          placeholder="Choose Calendar Category"
+          source={Images.calender}
+          style={styles.calendarIcon}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          value={calendarValue}
+          onChange={item => {
+            setCalendarValue(item.value);
+            setIsFocus(false);
+          }}
+        />
+      </View>
+
       <View style={styles.alarmBox}>
         <Image source={Images.alarm} style={styles.alarm} />
         <Text style={styles.alarmText}>Alarm</Text>

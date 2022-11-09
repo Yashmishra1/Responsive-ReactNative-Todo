@@ -1,5 +1,7 @@
 import {s, vs, ms, mvs} from 'react-native-size-matters';
 import {ScaledSheet} from 'react-native-size-matters';
+import Fonts from '@themes/fonts';
+import Colors from '@themes/colors';
 
 const styles = ScaledSheet.create({
   container:
@@ -7,9 +9,9 @@ const styles = ScaledSheet.create({
     flex:1,
     paddingTop:'60@vs',
     alignItems:"center",
-    marginHorizontal:"96@s",
+    marginHorizontal:"90@s",
     backgroundColor:"#paleGrey",
-    justifyContent:"space-evenly"
+    // justifyContent:"space-around"
   },
   primarytext:
   {
@@ -17,12 +19,24 @@ const styles = ScaledSheet.create({
     marginTop:"60@vs",
     fontWeight:"bold",
     fontSize:18,
-    color:"black",
+   
+  },
+  subTitle:
+  {
+    fontFamily: Fonts.PoppinsLight,
+    color: Colors.grey,
+    fontSize:14,
+    textAlign:"center",
   },
   cancelButton:
   {
     textAlign:"center",
     right: "100%",
+  },
+  verificationBox:
+  {
+    flexDirection:"column",
+    justifyContent:"space-around",
   }
   
 })

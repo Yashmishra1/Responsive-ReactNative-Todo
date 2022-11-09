@@ -1,8 +1,8 @@
 import {Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {Component} from 'react';
-import {ScaledSheet, vs, s} from 'react-native-size-matters';
-import Images from '@themes/images';
+import React from 'react';
+import {ScaledSheet} from 'react-native-size-matters';
 import Fonts from '@themes/fonts';
+
 const InputBox = ({title, time, source,rightIcon,icon,style,onPress}) => (
   <View style={styles.item}>
     <View style={styles.Inputdata}>

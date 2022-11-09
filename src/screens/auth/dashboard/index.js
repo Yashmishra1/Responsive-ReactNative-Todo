@@ -1,32 +1,33 @@
-import {Text, View, FlatList, Image, TouchableOpacity,} from 'react-native';
-import React, {Component, useState, useEffect} from 'react';
-import styles from './style';
-import CategoriesBox from './widgets/categories';
+import {FlatList} from 'react-native';
+import React from 'react';
 import Item from './widgets/item';
-import Fonts from '@themes/fonts';
-import Colors from '@themes/colors';
-import {DATA, List} from '../../../data';
 import HeaderComponent from './widgets/HeaderComponent';
 import FooterComponent from './widgets/FooterComponent';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Images from '@themes/images';
 import {connect} from 'react-redux';
+
 const Dashboard = ({route, navigation, List}) => {
+  const countBusiness = List.filter((obj) => obj?.categoryValue === "Business")?.length;
+  const countPersonal = List.filter((obj) => obj?.categoryValue === "Personal")?.length;
+  const list = List.map(e => e)
   const renderItem = ({item, index}) => {
     return (
       <Item
-        place={item.userPlace}
-        time={item.userDateTime}
-        source={item.source}
-        date={item.userDate}
+        item={item}
         onPress={() => navigation.navigate('edit', {item: item, index: index})}
       />
     );
   };
+  const Header = () => {
+    return(
+      <HeaderComponent BusinessTask={countBusiness} PersonalTask={countPersonal} />
+    )
+  }
   return (
     <FlatList
       data={List}
       renderItem={renderItem}
-      ListHeaderComponent={HeaderComponent}
+      ListHeaderComponent={Header}
       ListFooterComponent={FooterComponent}
       keyExtractor={(item, index) => index.toString()}
     />

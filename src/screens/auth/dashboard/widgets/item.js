@@ -1,21 +1,25 @@
-import {Text, View, Image, TouchableOpacity,ActionSheetIOS} from 'react-native';
-import React, {Component, useState} from 'react';
-import {ScaledSheet, vs, s} from 'react-native-size-matters';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {ScaledSheet} from 'react-native-size-matters';
 import Images from '@themes/images';
 import Fonts from '@themes/fonts';
-const Item = ({place, time, source, onPress,date}) => {
+import moment from 'moment';
+
+const Item = ({onPress,item}) => {
+  var time = moment(item.userDateTime).format("DD-MM-YYYY HH:mm A")
+  console.log("item.mae",time);
+  const image = item.categoryValue ==="Business" ? Images.purpleIcon : Images.pinkIcon;
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.item}>
         <View style={styles.Inputdata}>
-          <Image source={Images.right} style={styles.icon} />
+          <Image source={image} style={styles.icon} />
           <Text style={[styles.title, {fontFamily: Fonts.PoppinsLight}]}>
-            {place}
+            {item.userPlace}
           </Text>
         </View>
         <View style={styles.DateIcon}>
-          <Text style={styles.date}>{date}</Text>
-          <Text style={styles.date}>:{time}</Text>
+          <Text style={styles.date}>{time}</Text>
           <Image source={Images.arrow} style={styles.rightIcon} />
         </View>
       </View>

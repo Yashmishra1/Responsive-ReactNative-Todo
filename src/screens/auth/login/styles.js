@@ -13,11 +13,6 @@ const styles = ScaledSheet.create({
     height: vs(45),
     resizeMode: 'contain',
   },
-  primarytext: {
-    marginTop: 8,
-    color: '#236EEE',
-    fontSize: 16,
-  },
   signup: {
     flex: 1,
     flexDirection: 'row',
@@ -39,11 +34,8 @@ const styles = ScaledSheet.create({
     marginTop: Platform.OS == 'ios' ? vs(50) : vs(30),
     alignItems: 'center',
   },
-  top:
-  {
+  boxx: {
     backgroundColor:"red",
-    borderTopRightRadius: 1000,
-    borderTopLeftRadius: 1344440,
-  }
+  },
 });
 export default styles;
