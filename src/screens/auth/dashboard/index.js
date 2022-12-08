@@ -3,13 +3,11 @@ import React from 'react';
 import Item from './widgets/item';
 import HeaderComponent from './widgets/HeaderComponent';
 import FooterComponent from './widgets/FooterComponent';
-import Images from '@themes/images';
 import {connect} from 'react-redux';
 
 const Dashboard = ({route, navigation, List}) => {
   const countBusiness = List.filter((obj) => obj?.categoryValue === "Business")?.length;
   const countPersonal = List.filter((obj) => obj?.categoryValue === "Personal")?.length;
-  const list = List.map(e => e)
   const renderItem = ({item, index}) => {
     return (
       <Item

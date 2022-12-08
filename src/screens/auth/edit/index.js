@@ -19,6 +19,8 @@ const EditTodo = ({navigation, route,updateList}) => {
     place: item.userPlace,
     time: item.userDateTime,
     notes: item.userNotes,
+    priority:item.categoryValue,
+    calender:item.calendarValue,
   });
   const submit = () => {
     let index = route.params.index;
@@ -78,6 +80,8 @@ const EditTodo = ({navigation, route,updateList}) => {
         placeholder="Edit priority"
         icon={Images.flag}
         title="Priority"
+        onChangeText={text => setState({...state, priority: text})}
+        value={state.priority}
         leftImage={Images.dropDown}
         Inputstyle={styles.notesIcon}
       />
@@ -87,6 +91,8 @@ const EditTodo = ({navigation, route,updateList}) => {
         icon={Images.calender}
         title="Calendar"
         leftImage={Images.dropDown}
+        onChangeText={text => setState({...state, calender: text})}
+        value={state.calender}
         Inputstyle={styles.notesIcon}
       />
       <View

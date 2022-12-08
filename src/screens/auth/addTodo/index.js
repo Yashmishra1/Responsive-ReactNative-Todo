@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
-import CutstomDropdown from '../../../components/Dropdown';
+import CustomDropdown from '../../../components/Dropdown';
 
 const AddToDo = ({todoDetails, navigation, addTodo}) => {
   const [categoryValue, setCategoryValue] = useState(null);
@@ -39,7 +39,6 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
 
   const saveData = async () => {
     addTodo({data});
-
     onCreateTriggerNotification();
     Alert.alert('Done', 'Added Successfully');
     navigation.navigate('drawernavigation');
@@ -67,8 +66,7 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
           channelId: 'TODO',
         },
         ios: {
-          // iOS resource (.wav, aiff, .caf)
-          sound: 'local.wav',
+          sound: 'local.caf',
         },
       },
       trigger,
@@ -136,7 +134,7 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
         />
       </View>
       <View style={{marginTop: 20}}>
-        <CutstomDropdown
+        <CustomDropdown
           searchPlaceholder="Search Category..."
           data={categoryData}
           placeholder="Choose Priority"
@@ -152,7 +150,7 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
         />
       </View>
       <View style={{marginTop: 20}}>
-        <CutstomDropdown
+        <CustomDropdown
           searchPlaceholder="Search Category..."
           data={calendarData}
           placeholder="Choose Calendar Category"

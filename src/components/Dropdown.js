@@ -5,7 +5,7 @@ import {ScaledSheet, s, vs} from 'react-native-size-matters';
 import Fonts from '@themes/fonts';
 import Images from '@themes/images';
 
-const CutstomDropdown = ({searchPlaceholder,data,placeholder,source,style,onBlur,onChange,value,onFocus}) => {
+const CustomDropdown = ({searchPlaceholder,data,placeholder,source,style,onBlur,onChange,value,onFocus}) => {
     return (
       <View>
        <Dropdown
@@ -81,4 +81,4 @@ const styles = ScaledSheet.create({
     height: '19@vs',
   },
 })
-export default CutstomDropdown;
+export default CustomDropdown;

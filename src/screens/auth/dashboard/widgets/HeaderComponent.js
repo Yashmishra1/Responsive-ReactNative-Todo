@@ -6,7 +6,12 @@ import Fonts from '@themes/fonts';
 import CategoriesBox from './categories';
 
 const HeaderComponent = ({BusinessTask,PersonalTask}) => {
-  const [getPercentage, setPercentage] = useState();
+  const progress = () => {
+    if(BusinessTask)
+    {
+      return Colors.purple
+    }
+  }
   return (
     <View style={styles.container}>
       <Text
