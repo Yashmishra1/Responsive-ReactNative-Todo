@@ -38,6 +38,11 @@ const account = require('@images/account.png')
 const logout = require('@images/logout.png')
 const increaseArrow = require('@images/increaseArrow.png')
 const splashLogo = require('@images/splashLogo.png')
+const addImage = require('@images/addImage.png')
+const trophy = require('@images/trophy.png')
+const editTodo = require('@images/editTodo.png')
+const deleteTodo = require('@images/deleteTodo.png')
+const slide = require('@images/slide.png')
 const Images = {
   logo,
   eye,
@@ -79,5 +84,10 @@ const Images = {
   increaseArrow,
   splashLogo,
   lockEyeView,
+  addImage,
+  trophy,
+  editTodo,
+  deleteTodo,
+  slide
 }
 export default Images;

@@ -20,7 +20,7 @@ const styles = ScaledSheet.create({
   text: {
     marginTop: 8,
     color: '#236EEE',
-    left:10,
+    justifyContent:"center",
   },
 });
 export default ColorText;

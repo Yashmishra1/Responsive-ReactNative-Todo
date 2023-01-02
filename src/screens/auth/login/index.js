@@ -1,44 +1,46 @@
-import React, {useState,useEffect} from 'react';
-import {Image, View, Text,Alert} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Image, View, Text, Alert, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Login = ({navigation}) => {
-const [state, setState] = useState({
-  email: '',
-  password: '',
-});
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+    showPassword : true,
+  });
 
-const data  = {
-  email : state.password,
-  password : state.email,
-}
+  const data = {
+    email: state.password,
+    password: state.email,
+  };
   // useEffect(() => {
   //   getData();
   // });
   const handleSubmit = async () => {
-      if (!state.email) {
+    if (!state.email) {
       alert('Email is Requied!!');
     } else if (!state.password) {
       alert('password is Requied!!');
     } else {
       const value = await AsyncStorage.getItem('@user_input');
-      const result  = JSON.parse(value);
-      if(result)
-      {
+      const result = JSON.parse(value);
+      if (result) {
         result.filter(element => {
-        if(element.email === state.email)
-        {
-          navigation.navigate("mytabs")
-        }
-      })
+          if (
+            element.email === state.email &&
+            element.password === state.password
+          ) {
+            navigation.navigate('mytabs');
+            Alert.alert('Successfully Login');
+          }
+        });
+      } else {
+        Alert.alert('Account not found', 'Please signup');
+      }
     }
-    else{
-      Alert.alert("Account not found", "Please signup");
-    }
-  } 
-    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.connectLogo}>
@@ -46,15 +48,35 @@ const data  = {
       </View>
       <View style={styles.inputbox}>
         <Input
-          style={styles.top}
           placeholder="Email or username"
           keyboardType="email-address"
           onChangeText={text => setState(prev => ({...prev, email: text}))}
           value={state.email}
         />
-        <Input placeholder="Password" source={Images.eye}
-          onChangeText={text => setState(prev => ({...prev, password: text}))}
-          value={state.password} />
+        <View style={{justifyContent: 'space-between', flexDirection: 'row', paddingLeft:20}}>
+          <Input
+            placeholder="Password"
+            onChangeText={text => setState(prev => ({...prev, password: text}))}
+            value={state.password}
+            secureTextEntry={state.showPassword}
+          />
+          {state.showPassword ? ( 
+          <TouchableOpacity onPress={() => setState(prev => ({...prev, showPassword : !state.showPassword}))}>
+          <Image
+            style={styles.inputImage}
+            source={Images.eye}
+            resizeMode="contain"
+          />
+          </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => setState(prev => ({...prev, showPassword : !state.showPassword}))}>
+            <Image
+            style={styles.inputImage}
+            source={Images.lockEyeView}
+            resizeMode="contain" />
+          </TouchableOpacity>
+          )}
+        </View>
       </View>
 
       <ColorText
@@ -62,10 +84,7 @@ const data  = {
         text="Forgot?"
         style={styles.primarytext}
       />
-      <CustomButton
-        text="Sign In "
-        onPress={handleSubmit}
-         />
+      <CustomButton text="Sign In " onPress={handleSubmit} />
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>{"Don't have account "}</Text>
         <Text

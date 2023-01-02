@@ -17,6 +17,10 @@ const VerificationCode = () => {
         <CustomInput placeholder="0"/>
         <CustomInput placeholder="0"/>
       </View>
+      <View style={styles.Resendotp}>
+        <Text style={styles.secondarytext}>Didn't received code? </Text>
+        <Text style={styles.bottomText}>Resend OTP</Text>
+      </View>
         <CustomButton style={styles.cancelButton} text="Verify Now " />
     </View>
   );

@@ -1,11 +1,11 @@
 import {Text, View, Image, TouchableOpacity,Switch} from 'react-native';
 import React, {Component,useState} from 'react';
 import {ScaledSheet, vs, s} from 'react-native-size-matters';
-const Item = ({task, source, language, rightIcon,value}) => {
+const Item = ({task, source, language, rightIcon,value,onPress}) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <Image source={source} style={styles.leftIcon} />
         <View

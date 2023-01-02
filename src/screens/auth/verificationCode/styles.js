@@ -11,7 +11,6 @@ const styles = ScaledSheet.create({
     alignItems:"center",
     marginHorizontal:"90@s",
     backgroundColor:"#paleGrey",
-    // justifyContent:"space-around"
   },
   primarytext:
   {
@@ -35,9 +34,21 @@ const styles = ScaledSheet.create({
   },
   verificationBox:
   {
-    flexDirection:"column",
-    justifyContent:"space-around",
-  }
-  
+    flexDirection:"row",
+    justifyContent:"space-between",
+    padding:"10@s",
+  },
+  Resendotp:
+  {
+    flexDirection:"row",
+  },
+  secondarytext: {
+    color: '#7D7D7D',
+  },
+  bottomText: {
+    fontWeight:"bold",
+    color: '#236EEE',
+    fontSize: 14,
+  },
 })
 export default styles;

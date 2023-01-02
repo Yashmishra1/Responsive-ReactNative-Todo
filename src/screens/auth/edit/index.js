@@ -7,24 +7,36 @@ import Images from '@themes/images';
 import EditInputBox from './widgets/InputBox';  
 import CustomButton from '@components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {connect} from 'react-redux';
-import * as todosAction from '../../../store/todos/action';
+import {connect, useDispatch} from 'react-redux';
+// import * as todosAction from '../../../store/todos/action';
+import { updateList } from '../../../store/todo/todoSlice';
 import moment from 'moment';
 
-const EditTodo = ({navigation, route,updateList}) => {
-  const {item} = route.params;
+// const EditTodo = ({navigation, route,updateList}) => {
+const EditTodo = ({navigation, route}) => {
+  const {item, index} = route.params;
   const [isEnabled, setIsEnabled] = useState(item.userAlarm);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [state, setState] = useState({
-    place: item.userPlace,
+    place: item.userPlace, 
     time: item.userDateTime,
     notes: item.userNotes,
     priority:item.categoryValue,
     calender:item.calendarValue,
   });
+  const dispatch = useDispatch()
   const submit = () => {
-    let index = route.params.index;
-    updateList(state,index)
+    // let index = route.params.index;
+    let data = {
+      id: index,
+      place: state.place,
+      time: state.time,
+      notes : state.notes,
+      priority:state.priority,
+      calender:state.calender,
+    }
+    // updateList(state,index)
+    dispatch(updateList(data))
     Alert.alert("Done","Edit Successfully")
     navigation.navigate('drawernavigation');
   };
@@ -118,9 +130,10 @@ const EditTodo = ({navigation, route,updateList}) => {
   );
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateList: (data,index) => dispatch(todosAction.updateList(data,index)),
-  };
-}
-export default connect(null, mapDispatchToProps)(EditTodo);
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     updateList: (data,index) => dispatch(todosAction.updateList(data,index)),
+//   };
+// }
+// export default connect(null, mapDispatchToProps)(EditTodo);
+export default EditTodo;

@@ -20,6 +20,7 @@ const CustomInput = ({
   style,
   Inputstyle,
   value,
+  textColor
 }) => {
   return (
       <View style={styles.box}>

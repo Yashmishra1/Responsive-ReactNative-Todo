@@ -51,6 +51,7 @@ const styles = ScaledSheet.create({
     borderTopLeftRadius:10,
     borderBottomRightRadius:10,
     borderBottomLeftRadius:10,
+    margin : 10,
   },
 });
 export default CustomInput;

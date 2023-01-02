@@ -5,12 +5,12 @@ import Images from '@themes/images';
 import Fonts from '@themes/fonts';
 import moment from 'moment';
 
-const Item = ({onPress,item}) => {
-  var time = moment(item.userDateTime).format("DD-MM-YYYY HH:mm A")
-  console.log("item.mae",time);
+const Item = ({onPressEdit,item,onPressDelete}) => {
+  var time = moment(item.userDateTime).format("HH:mm A")
   const image = item.categoryValue ==="Business" ? Images.purpleIcon : Images.pinkIcon;
   return (
-    <TouchableOpacity onPress={onPress}>
+    // <TouchableOpacity>
+      <View style={{flexDirection:"row",alignItems:"center", marginTop:18,marginHorizontal:30}}>
       <View style={styles.item}>
         <View style={styles.Inputdata}>
           <Image source={image} style={styles.icon} />
@@ -23,7 +23,16 @@ const Item = ({onPress,item}) => {
           <Image source={Images.arrow} style={styles.rightIcon} />
         </View>
       </View>
-    </TouchableOpacity>
+      <View style={{flexDirection:"row",marginLeft : 10}}>
+        <TouchableOpacity onPress={onPressEdit}>
+        <Image source={Images.editTodo} style={styles.editTODO}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onPressDelete}>
+        <Image source={Images.deleteTodo} style={styles.deleteTodo}/>
+        </TouchableOpacity>
+        </View>
+      </View>
+    // </TouchableOpacity>
     )
 };
 export default Item;
@@ -36,11 +45,12 @@ const styles = ScaledSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: '18@vs',
+    // marginTop: '18@vs',
     backgroundColor: 'white',
     borderRadius: '15@vs',
     padding: '15@s',
-    marginHorizontal: '25@s',
+    // marginHorizontal: '25@s',
+    width:"220@s",
   },
   icon: {
     width: '22@s',
@@ -67,4 +77,12 @@ const styles = ScaledSheet.create({
     width: '5@s',
     height: '8@vs',
   },
+  editTODO :{
+    width:"40@s",
+    height:"50@vs",
+  },
+  deleteTodo :{
+    width:"40@s",
+    height:"50@vs",
+  }
 });

@@ -8,16 +8,19 @@ import CustomInput from '@components/CustomInput';
 import NotesInput from './widgets/NotesInput';
 import CustomButton from '@components/CustomButton';
 import * as todosAction from '../../../store/todos/action';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
 import CustomDropdown from '../../../components/Dropdown';
+import { addTodo } from '../../../store/todo/todoSlice';
 
-const AddToDo = ({todoDetails, navigation, addTodo}) => {
+// const AddToDo = ({todoDetails, navigation, addTodo}) => {
+const AddToDo = ({navigation}) => {
   const [categoryValue, setCategoryValue] = useState(null);
   const[calendarValue,setCalendarValue] = useState(null)
   const [isFocus, setIsFocus] = useState(false);
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     place: '',
     note: '',
@@ -38,7 +41,8 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     setState({...state, alarm: !state.alarm});
 
   const saveData = async () => {
-    addTodo({data});
+    dispatch(addTodo(data))
+    // addTodo({data});
     onCreateTriggerNotification();
     Alert.alert('Done', 'Added Successfully');
     navigation.navigate('drawernavigation');
@@ -48,7 +52,6 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     const date = new Date(Date.now());
     date.setHours(23);
     date.setMinutes(14);
-    console.log('date', date);
 
     // Create a time-based trigger
     const trigger: TimestampTrigger = {
@@ -182,15 +185,16 @@ const AddToDo = ({todoDetails, navigation, addTodo}) => {
     </View>
   );
 };
-function mapStateToProps(state) {
-  return {
-    todoDetails: state.todo.todoDetails,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     todoDetails: state.todo.todoDetails,
+//   };
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addTodo: data => dispatch(todosAction.addTodo(data)),
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddToDo);
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     addTodo: data => dispatch(todosAction.addTodo(data)),
+//   };
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(AddToDo);
+export default AddToDo;

@@ -13,7 +13,7 @@ const Input = ({
   value,
 }) => {
   return (
-    <View style={styles.box}>
+    // <View style={styles.box}>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -24,8 +24,8 @@ const Input = ({
         editable={editable}
         value={value}
       />
-      <Image style={styles.inputimage} source={source} resizeMode="contain" />
-    </View>
+      // {/* // <Image style={styles.inputimage} source={source} resizeMode="contain" /> */}
+    // </View>
   );
 };
 const styles = ScaledSheet.create({
@@ -41,7 +41,7 @@ const styles = ScaledSheet.create({
   },
   input: {
     fontSize: 16,
-    width: '200@vs',
+    width: '230@vs',
   },
   inputimage: {
     alignItems: 'center',

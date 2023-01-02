@@ -27,7 +27,6 @@ const CustomDate = ({
     onPress(date)
     date = moment(date).format('MMMM Do YYYY, h:mm:ss a');
     hideDatePicker();
-    console.log("A date has been picked: ", date);
   };
   return (
     <TouchableOpacity onPress={showDatePicker}>

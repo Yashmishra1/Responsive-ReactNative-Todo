@@ -29,7 +29,7 @@ function MyDrawer() {
           headerTitle: '',
           headerRight: props => (
             <View style={{flexDirection: 'row', right: '15%'}}>
-              <SearchIcon {...props} />
+              <SearchIcon {...props} onPress={() => navigation.navigate('search')} />
               <Notification {...props} />
             </View>
           ),
