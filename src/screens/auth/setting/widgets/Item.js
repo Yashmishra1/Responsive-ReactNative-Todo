@@ -37,7 +37,7 @@ const styles = ScaledSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '13@vs',
+    marginTop: '10@vs',
   },
   leftIcon: {
     width: '50@s',

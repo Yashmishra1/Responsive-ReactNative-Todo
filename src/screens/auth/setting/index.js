@@ -45,6 +45,9 @@ const Setting = ({navigation}) => {
               },
             },
           ]);
+        }else if(item?.task === "Chat with us")
+        {
+          navigation.navigate("chat")
         }
     }
     return(
@@ -52,7 +55,7 @@ const Setting = ({navigation}) => {
     )
   }
   return(
-    <View style={{flexDirection:"row",marginHorizontal:27,flex:1,marginTop:10,}}>
+    <View style={{flexDirection:"row",marginHorizontal:27,flex:1,}}>
       <SectionList
         sections={[...GENERAL, ...PRODUCTIVITY]}
         renderItem={renderItem}
