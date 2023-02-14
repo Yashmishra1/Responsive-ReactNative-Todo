@@ -1,41 +1,57 @@
-import {Text, View, FlatList, Image, TouchableOpacity,} from 'react-native';
-import React, {Component, useState, useEffect} from 'react';
-import styles from './style';
-import CategoriesBox from './widgets/categories';
+import {Alert, FlatList, View} from 'react-native';
+import React from 'react';
 import Item from './widgets/item';
-import Fonts from '@themes/fonts';
-import Colors from '@themes/colors';
-import {DATA, List} from '../../../data';
 import HeaderComponent from './widgets/HeaderComponent';
 import FooterComponent from './widgets/FooterComponent';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {connect} from 'react-redux';
-const Dashboard = ({route, navigation, List}) => {
+import {connect, useSelector,useDispatch} from 'react-redux';
+import { deleteTodo } from '../../../store/todo/todoSlice';
+
+// const Dashboard = ({route, navigation, List}) => {
+const Dashboard = ({navigation}) => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.todosList);
+  const countBusiness = todos.filter((obj) => obj?.categoryValue === "Business")?.length;
+  const countPersonal = todos.filter((obj) => obj?.categoryValue === "Personal")?.length;
   const renderItem = ({item, index}) => {
+    let data = {
+      item :item,
+      id : index,
+    }
     return (
       <Item
-        place={item.userPlace}
-        time={item.userDateTime}
-        source={item.source}
-        date={item.userDate}
-        onPress={() => navigation.navigate('edit', {item: item, index: index})}
+        item={item}
+        onPressEdit={() => navigation.navigate('edit', {item: item, index: index})}
+        onPressDelete={() => Alert.alert("Are you sure you want to delete", dispatch(deleteTodo(data)))}
+      />
+    );
+  };
+  const Header = () => {
+    return (
+      <HeaderComponent
+        BusinessTask={countBusiness}
+        PersonalTask={countPersonal}  
       />
     );
   };
   return (
-    <FlatList
-      data={List}
-      renderItem={renderItem}
-      ListHeaderComponent={HeaderComponent}
-      ListFooterComponent={FooterComponent}
-      keyExtractor={(item, index) => index.toString()}
-    />
+    <View>
+        <FlatList
+          data={todos}
+          renderItem={renderItem}
+          ListHeaderComponent={Header}
+          ListFooterComponent={FooterComponent}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReachedThreshold={1}
+
+        />
+    </View>
   );
 };
-function mapStateToProps(state) {
-  return {
-    List: state.todo.todosList,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     List: state.todo.todosList,
+//   };
+// }
 
-export default connect(mapStateToProps, null)(Dashboard);
+// export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;

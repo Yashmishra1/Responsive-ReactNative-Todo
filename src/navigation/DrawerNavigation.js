@@ -1,9 +1,8 @@
 import * as React from 'react';
-import {View, Text, Button, TouchableOpacity, Image} from 'react-native';
+import {View, TouchableOpacity, Image} from 'react-native';
 import Images from '@themes/images';
 import SearchIcon from '../components/Search';
 import Notification from '../components/Notification';
-import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Dashboard from '../screens/auth/dashboard';
 import Profile from '../screens/auth/profile';
@@ -30,7 +29,7 @@ function MyDrawer() {
           headerTitle: '',
           headerRight: props => (
             <View style={{flexDirection: 'row', right: '15%'}}>
-              <SearchIcon {...props} />
+              <SearchIcon {...props} onPress={() => navigation.navigate('search')} />
               <Notification {...props} />
             </View>
           ),
@@ -46,17 +45,33 @@ function MyDrawer() {
       <Drawer.Screen
         name="profile"
         component={Profile}
-        options={{
+        options={({navigation}) => ({
           drawerLabel: 'Profile',
           headerStyle: {
             backgroundColor: '#f5f6fa',
           },
-        }}
+          headerLeft: props => (
+            <TouchableOpacity onPress={navigation.toggleDrawer}>
+              <View style={{marginHorizontal: 15,}}>
+                <Image source={Images.drawerIcon} />
+              </View>
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Drawer.Screen
         name="setting"
         component={Setting}
-        options={{drawerLabel: 'Setting'}}
+        options={({navigation}) => ({
+          drawerLabel: 'Setting',
+        headerLeft: props => (
+          <TouchableOpacity onPress={navigation.toggleDrawer}>
+            <View style={{marginHorizontal: 25,}}>
+              <Image source={Images.drawerIcon} />
+            </View>
+          </TouchableOpacity>
+        ),
+      })}
       />
     </Drawer.Navigator>
   );

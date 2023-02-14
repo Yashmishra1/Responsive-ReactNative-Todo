@@ -1,11 +1,11 @@
 import {ScaledSheet, s, vs} from 'react-native-size-matters';
-
+import Colors from '@themes/colors';
 const styles = ScaledSheet.create({
   container: {
     marginHorizontal: '25@s',
   },
   heading: {
-    fontSize: '16@s',
+    fontSize: '15@s',
     color: '#7d7d7d',
     lineHeight: '30@vs',
   },
@@ -74,7 +74,7 @@ const styles = ScaledSheet.create({
   title: {
     fontSize: '12@s',
     left: '10@s',
-    color: '#7d7d7d',
+    color: Colors.grey,
   },
   DateIcon: {
     flexDirection: 'row',

@@ -1,4 +1,5 @@
 import {ScaledSheet, s, vs} from 'react-native-size-matters';
+import Fonts from '@themes/fonts';
 
 const styles = ScaledSheet.create({
   container: {
@@ -40,6 +41,7 @@ const styles = ScaledSheet.create({
   input: {
     fontSize: '12@s',
     width: '210@s',
+    marginVertical:"3@vs",
   },
   dropdownImage:
   {
@@ -81,6 +83,6 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  }
+  },
 });
 export default styles;

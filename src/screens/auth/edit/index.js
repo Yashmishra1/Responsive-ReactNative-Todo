@@ -4,23 +4,39 @@ import Colors from '@themes/colors';
 import styles from './style';
 import Fonts from '@themes/fonts';
 import Images from '@themes/images';
-import EditInputBox from './widgets/InputBox';
+import EditInputBox from './widgets/InputBox';  
 import CustomButton from '@components/CustomButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {connect} from 'react-redux';
-import * as todosAction from '../../../store/todos/action';
-const EditTodo = ({navigation, route,updateList}) => {
-  const {item} = route.params;
+import {connect, useDispatch} from 'react-redux';
+// import * as todosAction from '../../../store/todos/action';
+import { updateList } from '../../../store/todo/todoSlice';
+import moment from 'moment';
+
+// const EditTodo = ({navigation, route,updateList}) => {
+const EditTodo = ({navigation, route}) => {
+  const {item, index} = route.params;
   const [isEnabled, setIsEnabled] = useState(item.userAlarm);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [state, setState] = useState({
-    place: item.userPlace,
-    time: item.userDate,
+    place: item.userPlace, 
+    time: item.userDateTime,
     notes: item.userNotes,
+    priority:item.categoryValue,
+    calender:item.calendarValue,
   });
+  const dispatch = useDispatch()
   const submit = () => {
-    let index = route.params.index;
-    updateList(state,index)
+    // let index = route.params.index;
+    let data = {
+      id: index,
+      place: state.place,
+      time: state.time,
+      notes : state.notes,
+      priority:state.priority,
+      calender:state.calender,
+    }
+    // updateList(state,index)
+    dispatch(updateList(data))
     Alert.alert("Done","Edit Successfully")
     navigation.navigate('drawernavigation');
   };
@@ -59,7 +75,7 @@ const EditTodo = ({navigation, route,updateList}) => {
         Inputstyle={styles.clockIcon}
         leftImage={Images.editIcon}
         onChangeText={text => setState({...state, time: text})}
-        value={state.time}
+        value={moment(state.time).format("DD-MM-YYYY HH:mm A")}
       />
       <EditInputBox
         style={[styles.input, {fontFamily: Fonts.PoppinsRegular}]}
@@ -76,6 +92,8 @@ const EditTodo = ({navigation, route,updateList}) => {
         placeholder="Edit priority"
         icon={Images.flag}
         title="Priority"
+        onChangeText={text => setState({...state, priority: text})}
+        value={state.priority}
         leftImage={Images.dropDown}
         Inputstyle={styles.notesIcon}
       />
@@ -85,6 +103,8 @@ const EditTodo = ({navigation, route,updateList}) => {
         icon={Images.calender}
         title="Calendar"
         leftImage={Images.dropDown}
+        onChangeText={text => setState({...state, calender: text})}
+        value={state.calender}
         Inputstyle={styles.notesIcon}
       />
       <View
@@ -104,15 +124,16 @@ const EditTodo = ({navigation, route,updateList}) => {
       </View>
       <View
         style={styles.saveButton}>
-        <CustomButton text="Save " onPress={() => submit()}/>
+        <CustomButton text="Update " onPress={() => submit()}/>
       </View>
     </View>
   );
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateList: (data,index) => dispatch(todosAction.updateList(data,index)),
-  };
-}
-export default connect(null, mapDispatchToProps)(EditTodo);
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     updateList: (data,index) => dispatch(todosAction.updateList(data,index)),
+//   };
+// }
+// export default connect(null, mapDispatchToProps)(EditTodo);
+export default EditTodo;

@@ -3,7 +3,8 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useState, useEffect} from 'react';
 
-const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
+// const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
+const baseURL = 'https://dog.ceo/api/';
 
 const Services = () => {
   const [post, setPost] = React.useState(null);
@@ -13,15 +14,7 @@ const Services = () => {
   },[]);
   if (!post) return null;
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center', margin: 10}}>
-      <Text style={{padding: 10}}>
-        userID = {post.id}
-      </Text>
-      <Text style={{padding: 10}}>
-        Title = {post.title}
-      </Text>
-      <Text>body = {post.body}</Text>
-    </View>
+    console.log("not work")
   );
 };
 export default Services;

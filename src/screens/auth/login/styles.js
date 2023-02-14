@@ -13,11 +13,6 @@ const styles = ScaledSheet.create({
     height: vs(45),
     resizeMode: 'contain',
   },
-  primarytext: {
-    marginTop: 8,
-    color: '#236EEE',
-    fontSize: 16,
-  },
   signup: {
     flex: 1,
     flexDirection: 'row',
@@ -26,6 +21,18 @@ const styles = ScaledSheet.create({
   },
   inputbox: {
     marginTop: 57,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    borderColor: '#e6e6e6',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderWidth: 0.2,
+    height: '80@vs',
+    width: '310@s',
+    borderBottomEndRadius:"15@vs",
+    borderBottomLeftRadius:"15@vs",
+    borderTopLeftRadius:"15@vs",
+    borderTopRightRadius:"15@vs",
   },
   secondarytext: {
     color: '#7D7D7D',
@@ -39,11 +46,12 @@ const styles = ScaledSheet.create({
     marginTop: Platform.OS == 'ios' ? vs(50) : vs(30),
     alignItems: 'center',
   },
-  top:
-  {
+  boxx: {
     backgroundColor:"red",
-    borderTopRightRadius: 1000,
-    borderTopLeftRadius: 1344440,
+  },
+  inputImage :{
+    width: '21@s',
+    height: '15@vs',
   }
 });
 export default styles;

@@ -20,13 +20,11 @@ const styles = ScaledSheet.create({
   {
     color:"windowsBlue",
     fontWeight:"bold",
-    textAlign:"center",
     marginVertical:"20@s",
   },
   inputBox:
   {
     marginTop:"32@s",
-    marginHorizontal:"20@vs",
   },
   colorInput:
   {

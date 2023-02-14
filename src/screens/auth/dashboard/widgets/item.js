@@ -1,25 +1,38 @@
-import {Text, View, Image, TouchableOpacity,ActionSheetIOS} from 'react-native';
-import React, {Component, useState} from 'react';
-import {ScaledSheet, vs, s} from 'react-native-size-matters';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {ScaledSheet} from 'react-native-size-matters';
 import Images from '@themes/images';
 import Fonts from '@themes/fonts';
-const Item = ({place, time, source, onPress,date}) => {
+import moment from 'moment';
+
+const Item = ({onPressEdit,item,onPressDelete}) => {
+  var time = moment(item.userDateTime).format("HH:mm A")
+  const image = item.categoryValue ==="Business" ? Images.purpleIcon : Images.pinkIcon;
   return (
-    <TouchableOpacity onPress={onPress}>
+    // <TouchableOpacity>
+      <View style={{flexDirection:"row",alignItems:"center", marginTop:18,marginHorizontal:30}}>
       <View style={styles.item}>
         <View style={styles.Inputdata}>
-          <Image source={Images.right} style={styles.icon} />
+          <Image source={image} style={styles.icon} />
           <Text style={[styles.title, {fontFamily: Fonts.PoppinsLight}]}>
-            {place}
+            {item.userPlace}
           </Text>
         </View>
         <View style={styles.DateIcon}>
-          <Text style={styles.date}>{date}</Text>
-          <Text style={styles.date}>:{time}</Text>
+          <Text style={styles.date}>{time}</Text>
           <Image source={Images.arrow} style={styles.rightIcon} />
         </View>
       </View>
-    </TouchableOpacity>
+      <View style={{flexDirection:"row",marginLeft : 10}}>
+        <TouchableOpacity onPress={onPressEdit}>
+        <Image source={Images.editTodo} style={styles.editTODO}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onPressDelete}>
+        <Image source={Images.deleteTodo} style={styles.deleteTodo}/>
+        </TouchableOpacity>
+        </View>
+      </View>
+    // </TouchableOpacity>
     )
 };
 export default Item;
@@ -32,11 +45,12 @@ const styles = ScaledSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: '18@vs',
+    // marginTop: '18@vs',
     backgroundColor: 'white',
     borderRadius: '15@vs',
     padding: '15@s',
-    marginHorizontal: '25@s',
+    // marginHorizontal: '25@s',
+    width:"220@s",
   },
   icon: {
     width: '22@s',
@@ -63,4 +77,12 @@ const styles = ScaledSheet.create({
     width: '5@s',
     height: '8@vs',
   },
+  editTODO :{
+    width:"40@s",
+    height:"50@vs",
+  },
+  deleteTodo :{
+    width:"40@s",
+    height:"50@vs",
+  }
 });

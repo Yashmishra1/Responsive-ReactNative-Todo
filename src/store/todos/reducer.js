@@ -16,9 +16,6 @@ export default function todoReducer(state = intitialstate, action) {
         return {
           ...state,
           todosList:arr,
-          // place: user.userPlace,
-          // date: user.userDate,
-          // note: user.userNotes,
           todoDetails : user,
         };
       } else {
