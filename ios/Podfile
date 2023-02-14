@@ -6,7 +6,9 @@ install! 'cocoapods', :deterministic_uuids => false
 
 target 'TODO' do
   config = use_native_modules!
-
+  pod ‘FirebaseCore’, :modular_headers => true
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  pod ‘GoogleUtilities’, :modular_headers => true
   # Flags change depending on the env values.
   flags = get_default_flags()
 
@@ -19,7 +21,7 @@ target 'TODO' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  
 
   target 'TODOTests' do
     inherit! :complete

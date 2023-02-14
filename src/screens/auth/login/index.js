@@ -4,6 +4,8 @@ import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
+
 const Login = ({navigation}) => {
   const [state, setState] = useState({
     email: '',
@@ -41,6 +43,18 @@ const Login = ({navigation}) => {
       }
     }
   };
+  const userLogin = async(email, password) => {
+    try { 
+      let response = await auth().signInWithEmailAndPassword(state.email,state.password)
+      if(response && response.user)
+      {
+        Alert.alert("Success ✅", "Authenticated successfully")
+      }
+    }catch(e) {
+      console.error(e.message)
+    }
+
+  }
   return (
     <View style={styles.container}>
       <View style={styles.connectLogo}>
@@ -53,7 +67,6 @@ const Login = ({navigation}) => {
           onChangeText={text => setState(prev => ({...prev, email: text}))}
           value={state.email}
         />
-        <View style={styles.border} />
         <View style={{justifyContent: 'space-between', flexDirection: 'row', paddingLeft:20}}>
           <Input
             placeholder="Password"
@@ -85,7 +98,7 @@ const Login = ({navigation}) => {
         text="Forgot?"
         style={styles.primarytext}
       />
-      <CustomButton text="Sign In " onPress={handleSubmit} />
+      <CustomButton text="Sign In " onPress={userLogin} />
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>{"Don't have account "}</Text>
         <Text

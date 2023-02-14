@@ -4,7 +4,7 @@ import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 const SignUp = ({navigation}) => {
   let STORAGE_KEY = '@user_input';
@@ -56,7 +56,18 @@ const SignUp = ({navigation}) => {
       Alert.alert('Signup Successfully')
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(emptyArr));
     }
+    createUser(state.email,state.password)
   };
+  const createUser = async (email, password) => {
+    try {
+      let response = await auth().createUserWithEmailAndPassword(state.email, state.password)
+      if (response) {
+        Alert.alert("Success ✅", "Account created successfully")
+      }
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.connectLogo}>
@@ -106,7 +117,7 @@ const SignUp = ({navigation}) => {
 
       </View>
 
-      <CustomButton text={'Sign Up '} onPress={createAccount} />
+      <CustomButton text={'Sign Up '} onPress={createUser} />
 
       <View style={styles.signup}>
         <Text style={styles.secondarytext}>Already have an account? </Text>

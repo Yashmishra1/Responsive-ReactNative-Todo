@@ -24,23 +24,28 @@ import DrawerNavigation from './DrawerNavigation';
 import {s} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Chat from '../screens/auth/chat';
-
+import { firebase } from '@react-native-firebase/auth';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const[isLoggedIn, setIsLoggedIn] = useState();
   const[isReady, setIsReady] = useState(true);
   useEffect(() => {
-    getData();
+    // getData();
+    userAuthenticated();
   }, []);
 
   const getData = async () => {
     let localdata = await AsyncStorage.getItem("@user_input");
     localdata = JSON.parse(localdata);
+    console.log("locaL",localdata);
     setIsLoggedIn(localdata);
     setIsReady(false);
   }
-  
+  const userAuthenticated = () => {
+    let user = firebase.auth().currentUser.email 
+    
+  };
   if (isReady) {
     return null
   }
@@ -147,7 +152,7 @@ const Navigation = () => {
                   <Image
                     source={Images.cancelIcon}
                     resizeMode="contain"
-                    style={{width: 20, height: 20}}
+                    style={{width: 10, height: 20}}
                   />
                 </TouchableOpacity>
               </View>
