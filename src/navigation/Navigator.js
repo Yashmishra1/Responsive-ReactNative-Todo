@@ -23,6 +23,7 @@ import Profile from '../screens/auth/profile';
 import DrawerNavigation from './DrawerNavigation';
 import {s} from 'react-native-size-matters';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Chat from '../screens/auth/chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -134,6 +135,24 @@ const Navigation = () => {
           name="drawernavigation"
           component={DrawerNavigation}
           options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="chat"
+          component={Chat}
+          options={({navigation}) => ({
+            title: 'Chat',
+            headerLeft: props => (
+              <View style={{marginHorizontal: 10,}}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                  <Image
+                    source={Images.cancelIcon}
+                    resizeMode="contain"
+                    style={{width: 20, height: 20}}
+                  />
+                </TouchableOpacity>
+              </View>
+            ),
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

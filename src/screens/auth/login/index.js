@@ -53,6 +53,7 @@ const Login = ({navigation}) => {
           onChangeText={text => setState(prev => ({...prev, email: text}))}
           value={state.email}
         />
+        <View style={styles.border} />
         <View style={{justifyContent: 'space-between', flexDirection: 'row', paddingLeft:20}}>
           <Input
             placeholder="Password"

@@ -69,6 +69,11 @@ export const GENERAL = [{
       task: "Show Notification",
       source:Images.cirlceNotification,
     },
+    {
+      id: "5",
+      task: "Chat with us",
+      source:require('../assets/images/chat.png'),
+    },
   ]
 }];
 

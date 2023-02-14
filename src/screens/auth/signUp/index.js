@@ -4,7 +4,7 @@ import styles from './styles';
 import {Input, CustomButton, ColorText} from '@components';
 import Images from '@themes/images';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
 
 const SignUp = ({navigation}) => {
   let STORAGE_KEY = '@user_input';
