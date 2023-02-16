@@ -7,7 +7,7 @@ import {connect, useSelector,useDispatch} from 'react-redux';
 import { deleteTodo } from '../../../store/todo/todoSlice';
 
 // const Dashboard = ({route, navigation, List}) => {
-const Dashboard = ({navigation}) => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.todosList);
   const countBusiness = todos.filter((obj) => obj?.categoryValue === "Business")?.length;
@@ -54,4 +54,4 @@ const Dashboard = ({navigation}) => {
 // }
 
 // export default connect(mapStateToProps, null)(Dashboard);
-export default Dashboard;
+export default Home;

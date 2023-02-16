@@ -1,7 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import {View, Text} from 'react-native';
-import {useState, useEffect} from 'react';
 
 // const baseURL = 'https://jsonplaceholder.typicode.com/posts/1';
 const baseURL = 'https://dog.ceo/api/';

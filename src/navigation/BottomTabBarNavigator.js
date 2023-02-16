@@ -1,15 +1,13 @@
 import * as React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Dashboard from '../screens/auth/dashboard';
-import Statistics from '../screens/auth/statistics';
-import AddToDo from '../screens/auth/addTodo';
-import WishList from '../screens/auth/wishlist';
-import Setting from '../screens/auth/setting';
-import {vs, ms, s, ScaledSheet} from 'react-native-size-matters';
+import Statistics from '../screens/dashboard/statistics';
+import AddToDo from '../screens/dashboard/addTodo';
+import WishList from '../screens/dashboard/wishlist';
+import Setting from '../screens/dashboard/setting';
+import {vs, ms} from 'react-native-size-matters';
 import Images from '@themes/images';
-import Profile from '../screens/auth/profile';
+import Profile from '../screens/dashboard/profile';
 import DrawerNavigation from './DrawerNavigation';
 const Tab = createBottomTabNavigator();
 const TabBarIcon = ({image, style, tintColor}) => {

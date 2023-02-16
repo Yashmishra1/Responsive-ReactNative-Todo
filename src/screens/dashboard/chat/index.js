@@ -1,7 +1,6 @@
 import React, {useState,useEffect,useCallback} from 'react'
 import { View,Text } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat'
-
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   console.log("message",messages)
