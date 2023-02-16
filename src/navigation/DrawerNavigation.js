@@ -4,9 +4,9 @@ import Images from '@themes/images';
 import SearchIcon from '../components/Search';
 import Notification from '../components/Notification';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Dashboard from '../screens/auth/dashboard';
-import Profile from '../screens/auth/profile';
-import Setting from '../screens/auth/setting';
+import Home from '../screens/dashboard/home';
+import Profile from '../screens/dashboard/profile';
+import Setting from '../screens/dashboard/setting';
 const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
@@ -23,7 +23,7 @@ function MyDrawer() {
       }}>
       <Drawer.Screen
         name="dashboard"
-        component={Dashboard}
+        component={Home}
         options={({navigation}) => ({
           drawerLabel: 'Dashboard',
           headerTitle: '',

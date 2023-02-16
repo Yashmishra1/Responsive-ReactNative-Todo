@@ -49,9 +49,10 @@ const Login = ({navigation}) => {
       if(response && response.user)
       {
         Alert.alert("Success ✅", "Authenticated successfully")
+        navigation.navigate("mytabs")
       }
     }catch(e) {
-      console.error(e.message)
+      Alert.alert(e.message)
     }
 
   }
@@ -67,6 +68,7 @@ const Login = ({navigation}) => {
           onChangeText={text => setState(prev => ({...prev, email: text}))}
           value={state.email}
         />
+        <View style={styles.border} />
         <View style={{justifyContent: 'space-between', flexDirection: 'row', paddingLeft:20}}>
           <Input
             placeholder="Password"

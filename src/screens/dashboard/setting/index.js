@@ -4,6 +4,7 @@ import Item from './widgets/Item';
 import Section from './widgets/Section';
 import {GENERAL, PRODUCTIVITY} from '../../../data';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { firebase } from '@react-native-firebase/auth';
 
 const renderSectionHeader = ({section}) => {
   return(
@@ -25,8 +26,8 @@ const Setting = ({navigation}) => {
             {
               text: 'OK',
               onPress: async () => {
-
-                navigation.replace('login');
+                await firebase.auth().signOut()
+                navigation.replace('authStack');
               },
             },
           ]);

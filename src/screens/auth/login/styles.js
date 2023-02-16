@@ -52,6 +52,11 @@ const styles = ScaledSheet.create({
   inputImage :{
     width: '21@s',
     height: '15@vs',
+  },
+  border :{
+    backgroundColor:"#d9d9d9",
+    width : "300@s",
+    height : "1@vs",
   }
 });
 export default styles;
