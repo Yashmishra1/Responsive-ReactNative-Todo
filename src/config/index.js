@@ -8,7 +8,7 @@ const SERVER_HOST = Config.API_URL;
 //   TODO,
 //   TODO_DETAILS
 // }
-const TODO = "todos/1"
+const TODO = "todos"
 const config = {
   SERVER_HOST,
   TODO,

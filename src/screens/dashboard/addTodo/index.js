@@ -1,4 +1,4 @@
-import {Text, View, Image, Switch, Alert} from 'react-native';
+import {Text,View,Image,Switch,Alert,KeyboardAvoidingView,Platform} from 'react-native';
 import React, {useState} from 'react';
 import Fonts from '@themes/fonts';
 import Colors from '@themes/colors';
@@ -13,12 +13,12 @@ import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 import CustomDate from './widgets/CustomDate';
 import moment from 'moment';
 import CustomDropdown from '../../../components/Dropdown';
-import { addTodo } from '../../../store/todo/todoSlice';
+import {addTodo} from '../../../store/todo/todoSlice';
 
 // const AddToDo = ({todoDetails, navigation, addTodo}) => {
 const AddToDo = ({navigation}) => {
   const [categoryValue, setCategoryValue] = useState(null);
-  const[calendarValue,setCalendarValue] = useState(null)
+  const [calendarValue, setCalendarValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -34,14 +34,14 @@ const AddToDo = ({navigation}) => {
     userAlarm: state.alarm,
     userDate: state.date,
     userDateTime: state.dateTime,
-    categoryValue:categoryValue,
-    calendarValue:calendarValue,
+    categoryValue: categoryValue,
+    calendarValue: calendarValue,
   };
   const toggleSwitch = ({navigation}) =>
     setState({...state, alarm: !state.alarm});
 
   const saveData = async () => {
-    dispatch(addTodo(data))
+    dispatch(addTodo(data));
     // addTodo({data});
     onCreateTriggerNotification();
     Alert.alert('Done', 'Added Successfully');
@@ -64,7 +64,7 @@ const AddToDo = ({navigation}) => {
     await notifee.createTriggerNotification(
       {
         title: 'Meeting with Yash',
-        body: "notification",
+        body: 'notification',
         android: {
           channelId: 'TODO',
         },

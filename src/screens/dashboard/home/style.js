@@ -50,6 +50,7 @@ const styles = ScaledSheet.create({
   },
   todoTitle:
   {
+    color : "#000",
     marginTop:"10@s",
     fontSize:"16@s",
   },

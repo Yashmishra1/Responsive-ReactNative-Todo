@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/dashboard/home';
 import MyTabs from './BottomTabBarNavigator';
@@ -10,8 +10,27 @@ import Profile from '../screens/dashboard/profile';
 import DrawerNavigation from './DrawerNavigation';
 import Chat from '../screens/dashboard/chat';
 import Images from '@themes/images';
-const DashboardStack = () => {
+import { vs } from 'react-native-size-matters';
+import OpenChat from '../screens/dashboard/openChat.js';
+
+const DashboardStack = ({navigation}) => {
   const Stack = createNativeStackNavigator();
+  const Back = () => {
+    const onHandle = () => {
+      navigation.goBack()
+    }
+    return (
+      <View style={{marginHorizontal: 10}}>
+        <TouchableOpacity onPress={onHandle}>
+          <Image
+            source={Images.cancelIcon}
+            resizeMode="contain"
+            style={{width: 15, height: 15}}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -32,15 +51,7 @@ const DashboardStack = () => {
           headerShown: false,
           title: 'Dashboard',
           headerLeft: props => (
-            <View style={{left: '55%'}}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Image
-                  source={Images.cancelIcon}
-                  resizeMode="contain"
-                  style={{width: 10, height: 10}}
-                />
-              </TouchableOpacity>
-            </View>
+         <Back />
           ),
         })}
       />
@@ -50,20 +61,22 @@ const DashboardStack = () => {
         options={({navigation}) => ({
           title: 'Edit To- do',
           headerLeft: props => (
-            <View style={{marginHorizontal: 10}}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Image
-                  source={Images.cancelIcon}
-                  resizeMode="contain"
-                  style={{width: 10, height: 10}}
-                />
-              </TouchableOpacity>
-            </View>
+            <Back />
           ),
         })}
       />
       <Stack.Screen name="search" component={Search} />
-      <Stack.Screen name="profile" component={Profile} />
+      <Stack.Screen
+        name="profile"
+        component={Profile}
+        options={({navigation}) => ({
+          headerTitleAlign: 'center',
+          title: 'Profile',
+          headerLeft: props => (
+            <Back />
+          ),
+        })}
+      />
       <Stack.Screen
         name="drawernavigation"
         component={DrawerNavigation}
@@ -75,18 +88,11 @@ const DashboardStack = () => {
         options={({navigation}) => ({
           title: 'Chat',
           headerLeft: props => (
-            <View style={{marginHorizontal: 10}}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Image
-                  source={Images.cancelIcon}
-                  resizeMode="contain"
-                  style={{width: 10, height: 20}}
-                />
-              </TouchableOpacity>
-            </View>
+            <Back />
           ),
         })}
       />
+      <Stack.Screen name='openChat' component={OpenChat} />
     </Stack.Navigator>
   );
 };

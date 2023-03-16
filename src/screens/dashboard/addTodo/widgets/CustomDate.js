@@ -5,16 +5,13 @@ import {ScaledSheet} from 'react-native-size-matters';
 import Fonts from '@themes/fonts';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment'
+import { title } from 'process';
 const CustomDate = ({
   icon,
-  title,
   onPress,
-  value,
+  title,
 }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const[state,setState] = useState({
-    date:''
-  })
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -34,13 +31,13 @@ const CustomDate = ({
         <Image style={styles.inputimage} source={icon} resizeMode="contain" />
         <View style={{right: 25}}>
           <Text style={[styles.heading, {fontFamily: Fonts.PoppinsLight}]}>
-            {value}
+            {title}
           </Text>
         </View>
       </View>
         <DateTimePickerModal
         isVisible={isDatePickerVisible}
-        mode="datetime"
+        mode="date"
         onConfirm={handleConfirm}
         onCancel={hideDatePicker} />
     </TouchableOpacity>

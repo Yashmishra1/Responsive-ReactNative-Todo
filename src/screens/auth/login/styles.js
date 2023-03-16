@@ -38,7 +38,6 @@ const styles = ScaledSheet.create({
     color: '#7D7D7D',
   },
   bottomText: {
-    fontWeight:"bold",
     color: '#236EEE',
     fontSize: 14,
   },

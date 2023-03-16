@@ -24,15 +24,15 @@ const Setting = ({navigation}) => {
               style: 'cancel',
             },
             {
-              text: 'OK',
+              text: 'Logout',
               onPress: async () => {
                 await firebase.auth().signOut()
                 navigation.replace('authStack');
-              },
+              },style: 'destructive'
             },
           ]);
         }else if(item?.task === "Delete Account") {
-          Alert.alert('Logout', 'are you sure you want to Delete?', [
+          Alert.alert('Delete', 'are you sure you want to Delete?', [
             {
               text: 'Cancel',
               onPress: () => console.log('Cancel Pressed'),

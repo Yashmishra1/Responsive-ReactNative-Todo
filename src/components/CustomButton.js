@@ -16,7 +16,6 @@ const styles = ScaledSheet.create({
   container: {
     flexDirection:"row",
     justifyContent:"center",
-    marginTop:'30@vs',
     backgroundColor: '#12E3B3',
     width: '300@s',
     padding: '15@msr',

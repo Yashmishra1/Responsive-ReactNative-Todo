@@ -39,7 +39,6 @@ const CustomInput = ({
             secureTextEntry={secureTextEntry}
             keyboardType={keyboardType}
             onChangeText={onChangeText}
-            placeholderTextColor={placeholderColor}
             autoCorrect={autoCorrect}
             multiline={multiline}
             lineHeight={lineHeight}

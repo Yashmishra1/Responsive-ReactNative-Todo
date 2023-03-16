@@ -121,15 +121,15 @@ const MyTabs = () => {
       <Tab.Screen
         name="Setting"
         component={Setting}
-        options={{
-          title:"Setting",
+        options={({navigation}) => ({
+          title: 'Setting',
           headerStyle: {
             backgroundColor: '#f5f6fa',
           },
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerTitleAlign:"center",
+          headerTitleAlign: 'center',
           tabBarShowLabel: false,
           tabBarIcon: ({color}) => (
             <TabBarIcon
@@ -138,8 +138,8 @@ const MyTabs = () => {
             />
           ),
           headerRight: props => (
-            <TouchableOpacity onPress={Profile}>
-              <View style={{flexDirection: 'row',marginHorizontal:15,}}>
+            <TouchableOpacity onPress={() => navigation.navigate('profile')}>
+              <View style={{flexDirection: 'row', marginHorizontal: 15}}>
                 <Image
                   source={Images.profile}
                   style={{height: 50, width: 50}}
@@ -147,7 +147,7 @@ const MyTabs = () => {
               </View>
             </TouchableOpacity>
           ),
-        }}
+        })}
       />
     </Tab.Navigator>
   );
