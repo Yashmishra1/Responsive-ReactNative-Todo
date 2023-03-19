@@ -43,13 +43,13 @@ const Login = ({navigation}) => {
       }
     }
   };
-  const userLogin = async(email, password) => {
+  const userLogin = async() => {
     try { 
       let response = await auth().signInWithEmailAndPassword(state.email,state.password)
       if(response && response.user)
       {
         Alert.alert("Success ✅", "Authenticated successfully")
-        navigation.navigate("mytabs")
+        navigation.navigate("dashboardStack")
       }
     }catch(e) {
       Alert.alert(e.message)

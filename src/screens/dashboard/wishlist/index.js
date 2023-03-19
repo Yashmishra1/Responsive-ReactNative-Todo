@@ -2,6 +2,7 @@ import { Alert, Button, FlatList, Text, TextInput, View } from 'react-native'
 import React, { Component,useState } from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux';
+import { firebase } from '@react-native-firebase/database';
 
 const WishList = () => {
   const dogs_api =  () => {
@@ -86,11 +87,12 @@ const WishList = () => {
     if(!state.name){
       Alert.alert("Enter name")
     } else {
-      setState((state) => ({...state, isShow: true}))``
+      setState((state) => ({...state, isShow: true}))
     }
   }
   return(
     <View style={{justifyContent:"center",alignItems:"center",flex : 1}}>
+      {/* {persons.map(person => <Text key={person}>{person.name}</Text>)} */}
     <Text>Coming soon Statistics</Text>
     <Text>APi testing </Text>
     <Button title='onPress'  onPress={dogs_api} />

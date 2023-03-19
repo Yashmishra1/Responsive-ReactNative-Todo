@@ -48,5 +48,10 @@ const styles = ScaledSheet.create({
     width: '21@s',
     height: '15@vs',
   },
+  border : 
+  {backgroundColor:"#d9d9d9",
+   height : 1,
+  width : "310@s"
+  }
 });
 export default styles;

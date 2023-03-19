@@ -6,31 +6,29 @@ import {s, vs, ms, mvs} from 'react-native-size-matters';
 const CompletedList = ({day,Completed}) => {
   return (
     <View>
-    <Text>RECENTLY COMPLETED</Text>
-    <View>
       <Text>{day}</Text>
       <View style={styles.progressBox}>
         <View style={styles.progressTodo}></View>
         <View  style={styles.remainprogressTodo}></View>
-        <Text>{Completed}</Text>
+        <Text style={{marginLeft : 10,}}>{Completed}</Text>
       </View>
     </View>
-  </View>
   )
 }
 const styles = ScaledSheet.create({
 progressBox : {
   flexDirection:"row",
-  justifyContent:"space-around",
+  alignItems : "center",
 },
 progressTodo : {
-  backgroundColor:"lavenderBlue",
-  height:"10@vs",
-  width:"400@s",
+  backgroundColor:"#8b74f1",
+  height:"4@vs",
+  width:"100@s",
 },
 remainprogressTodo : {
-  backgroundColor:"grey",
-  height:"20@s",
+  backgroundColor:"#dfdfdf",
+  height:"4@s",
+  width : "100@s",
 }
 })
 

@@ -26,7 +26,7 @@ const Navigation = () => {
     setIsReady(false);
   };
   const userAuthenticated = () => {
-    let user = firebase.auth().currentUser.email;
+    let user = firebase.auth()?.currentUser?.email;
     setIsLoggedIn(user);
     setIsReady(false);
   };

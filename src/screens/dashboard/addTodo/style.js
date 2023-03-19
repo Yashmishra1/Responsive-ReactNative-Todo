@@ -5,9 +5,9 @@ const styles = ScaledSheet.create({
   container: {
     flex: 1,
     marginHorizontal: '21@s',
+    justifyContent : "space-around",
   },
   heading: {
-    marginTop: '5@vs',
     fontSize: '16@s',
   },
   subHeading: {
@@ -35,6 +35,7 @@ const styles = ScaledSheet.create({
   },
   alarmText:
   {
+    color:"#000",
     fontSize:"14@s",
     right:"60@s",
   },
@@ -69,17 +70,17 @@ const styles = ScaledSheet.create({
     right:10,
     height:"20@vs",
     width:"20@s",
-    marginTop:10,
+    marginTop:vs(10),
   },
   dateTime:
   {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 24,
+    // marginTop: 24,
   },
   alarmBox:
   {
-    marginTop: 20,
+
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

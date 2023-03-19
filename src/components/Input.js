@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TextInput,Image,Text} from 'react-native';
 import {s, vs, ms, mvs} from 'react-native-size-matters';
 import {ScaledSheet} from 'react-native-size-matters';
+import Colors from '../theme/colors';
 
 const Input = ({
   placeholder,
@@ -20,7 +21,7 @@ const Input = ({
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         onChangeText={onChangeText}
-        placeholderTextColor="#7D7D7D"
+        placeholderTextColor={Colors.black}
         editable={editable}
         value={value}
       />
@@ -42,6 +43,7 @@ const styles = ScaledSheet.create({
   input: {
     fontSize: 16,
     width: '230@vs',
+    color:"#000",
   },
   inputimage: {
     alignItems: 'center',

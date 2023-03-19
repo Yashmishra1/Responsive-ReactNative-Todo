@@ -4,6 +4,7 @@ import configureStore from './src/store/configureStore';
 import { Provider } from 'react-redux'
 import notifee from '@notifee/react-native';
 import { store } from './src/store';
+
 async function createUserChannel() {
   await notifee.requestPermission()
   await notifee.createChannel({

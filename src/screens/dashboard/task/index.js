@@ -43,7 +43,6 @@ const Task = ({navigation}) => {
   );
   const searchName = input => {
     let filteredData = data.filter(item => {
-      console.log('item');
       return item.name.toLowerCase().includes(input.toLowerCase());
     });
     setNewData(filteredData);
@@ -53,7 +52,6 @@ const Task = ({navigation}) => {
   const SelectedItem = (item) => {
         if (selected.includes(item.id)) {
           let index = selected.indexOf(item.id);
-          console.log(index)
           selected.splice(index, 1);
         } else {
           selected.push(item.id);

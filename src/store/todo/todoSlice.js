@@ -42,6 +42,9 @@ export const todosSlice = createSlice({
       const arr = []
       arr.push(data)
       const removeTodo = arr.splice(arr.findIndex(a => a.id === a.item),1)
+    //   deleteTask: (state, action)=>{
+    //     return state.filter((item) => item.id !== action.payload.id);
+    // }
       // if(action.payload)
       // {
         return {
